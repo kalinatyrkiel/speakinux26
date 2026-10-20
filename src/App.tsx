@@ -240,7 +240,7 @@ function SystemPromptMock({ showSuggestion }: { showSuggestion: boolean }) {
     <div className="prompt-mock">
       <div className="prompt-mock-copy">
         <h2 className="prompt-mock-heading">
-          Projekt rozmowy siedzi w <span className="green">szczegółach</span>
+          Projekt rozmowy leży w <span className="green">instrukcjach</span>
         </h2>
         <p className="body-copy">
           Content designerzy kształtują to, jak odpowiadają agenci AI
@@ -285,11 +285,68 @@ function SystemPromptMock({ showSuggestion }: { showSuggestion: boolean }) {
 
 function EvalsExamples() {
   return (
-    <div className="evals-slide evals-slide-title-only">
-      <h2 className="display statement-display">
-        <span className="green">Evals:</span> sprawdzanie jakości odpowiedzi na
-        standardowych zadaniach
-      </h2>
+    <div className="evals-slide">
+      <div className="evals-intro">
+        <h2 className="slide-title wide-title">
+          <span className="green">Evals:</span> sprawdzanie jakości odpowiedzi na
+          standardowych zadaniach
+        </h2>
+      </div>
+      <div className="evals-spec">
+        <div className="evals-spec-head" aria-hidden="true">
+          <span>Zadanie</span>
+          <span>Przykład</span>
+        </div>
+        <article className="evals-spec-row">
+          <h3 className="evals-task-title">Formatowanie</h3>
+          <p className="evals-input">
+            <span className="evals-quote">„Jak zresetować hasło?”</span>
+          </p>
+        </article>
+      </div>
+      <div className="evals-output-pair">
+        <article className="evals-output evals-output-fail">
+          <span className="evals-output-label">
+            <EvalFailIcon />
+            Fail
+          </span>
+          <div className="evals-output-body">
+            <p className="evals-output-rule">
+              Całe zdania pogrubione. Ściany tekstu. Bez list.
+            </p>
+            <div className="evals-output-sample">
+              <p>
+                <strong>
+                  Wejdź na stronę logowania, kliknij „Nie pamiętasz hasła?”,
+                  wpisz e-mail, otwórz wiadomość, kliknij link, ustaw nowe
+                  hasło i zaloguj się ponownie.
+                </strong>
+              </p>
+            </div>
+          </div>
+        </article>
+        <article className="evals-output evals-output-pass">
+          <span className="evals-output-label">
+            <EvalPassIcon />
+            Pass
+          </span>
+          <div className="evals-output-body">
+            <p className="evals-output-rule">
+              Akapity do 3 zdań. Listy przy 3+ krokach. Pogrubienie tylko
+              etykiet lub ostrzeżeń.
+            </p>
+            <div className="evals-output-sample">
+              <p>Aby zresetować hasło:</p>
+              <ol>
+                <li>Otwórz stronę logowania.</li>
+                <li>Wybierz <strong>Nie pamiętasz hasła?</strong></li>
+                <li>Wpisz e-mail i otwórz link z wiadomości.</li>
+                <li>Ustaw nowe hasło i zapisz.</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   )
 }
@@ -723,7 +780,7 @@ const slides: Slide[] = [
         </cite>
         <p className="body-copy brevity-finding">
           „W prawie wszystkich przypadkach odpowiedzi LLM są znacząco dłuższe
-          niż docelowa długość — na wszystkich zbiorach danych.”
+          niż docelowa długość (na wszystkich zbiorach danych).”
         </p>
         <p className="brevity-takeaway">
           <strong className="pink">
@@ -849,12 +906,11 @@ const slides: Slide[] = [
     content: (
       <>
         <h2 className="display statement-display">
-          Słowa, których używamy, kształtują to, w co ludzie{' '}
-          <span className="pink">wierzą</span> w kwestii AI.
+          Słowa używane przez <span className="green">AI</span> kształtują ludzki
+          odbiór.
         </h2>
         <p className="body-copy">
-          Porozmawiajmy o biasach — i o tym, jak copy wspiera weryfikację, a nie
-          ślepe zaufanie
+          Porozmawiajmy o ograniczeniach poznawczych
         </p>
       </>
     ),
@@ -967,7 +1023,7 @@ const slides: Slide[] = [
             <div className="agent-output">
               <span className="agent-output-meta">Agent</span>
               <p>
-                Użyj modala. To najjaśniejszy sposób na potwierdzenie.
+                Użyj modala. To najlepszy sposób na potwierdzenie.
               </p>
             </div>
           </article>
@@ -1003,9 +1059,9 @@ const slides: Slide[] = [
   {
     content: (
       <h2 className="display statement-display language-quote">
-        Projektujemy doświadczenia z AI…
+        Projektujemy narzędzia AI…
         <br />
-        ale jak <span className="green">projektować z AI</span>?
+        a jak <span className="green underlined">projektować z AI</span>?
       </h2>
     ),
     className: 'statement-slide',

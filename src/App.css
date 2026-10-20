@@ -742,77 +742,60 @@ h3 {
 
 .evals-slide {
   display: grid;
-  gap: clamp(14px, 1.8vw, 24px);
+  gap: clamp(10px, 1.35vw, 18px);
   align-content: center;
   height: 100%;
+  min-height: 0;
 }
 
 .evals-intro .slide-title {
   margin-bottom: 0;
-  font-size: clamp(24px, 2.8vw, 40px);
-  line-height: 1.1;
+  max-width: none;
+  font-size: clamp(20px, 2.35vw, 34px);
+  line-height: 1.12;
   letter-spacing: -0.03em;
 }
 
-.evals-table {
+.evals-spec {
   display: grid;
-  gap: 8px;
+  gap: 6px;
 }
 
-.evals-table-head,
-.evals-row {
+.evals-spec-head,
+.evals-spec-row {
   display: grid;
-  grid-template-columns: 0.85fr 1.1fr 1.2fr 1.35fr;
+  grid-template-columns: 0.75fr 1.25fr;
   gap: 12px;
-  align-items: start;
+  align-items: center;
 }
 
-.evals-table-head {
-  padding: 0 4px 6px;
+.evals-spec-head {
+  padding: 0 4px 4px;
   color: var(--text-dim);
-  font-size: clamp(16px, 1.45vw, 22px);
+  font-size: clamp(11px, 1vw, 14px);
   font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.evals-head-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.evals-head-status svg {
-  width: 14px;
-  height: 14px;
-}
-
-.evals-row {
-  padding: clamp(16px, 1.85vw, 26px);
+.evals-spec-row {
+  padding: clamp(8px, 1vw, 14px) clamp(10px, 1.25vw, 16px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.03);
 }
 
-.evals-task h3 {
-  margin: 0 0 4px;
-  font-size: clamp(20px, 2.1vw, 30px);
+.evals-task-title {
+  margin: 0;
+  font-size: clamp(17px, 1.75vw, 24px);
   line-height: 1.15;
+  font-weight: 400;
 }
 
-.evals-task p {
+.evals-input {
   margin: 0;
-  color: var(--text-meta);
-  font-size: clamp(16px, 1.55vw, 23px);
-  line-height: 1.3;
-}
-
-.evals-input,
-.evals-fail,
-.evals-pass {
-  margin: 0;
-  font-size: clamp(16px, 1.7vw, 25px);
-  line-height: 1.35;
+  font-size: clamp(14px, 1.4vw, 20px);
+  line-height: 1.32;
 }
 
 .evals-quote {
@@ -820,35 +803,95 @@ h3 {
   font-weight: 400;
 }
 
-.evals-fail,
-.evals-pass {
+.evals-output-pair {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 8px;
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  min-height: 0;
 }
 
-.evals-status-icon {
+.evals-output {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  min-height: 0;
+  padding: clamp(10px, 1.2vw, 16px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.evals-output-fail {
+  color: var(--black);
+  background: var(--pink-fill);
+  border-color: var(--pink-fill);
+}
+
+.evals-output-pass {
+  color: var(--white);
+  background: var(--green-fill);
+  border-color: var(--green-fill);
+}
+
+.evals-output-label {
   display: inline-flex;
-  margin-top: 2px;
-  font-size: 18px;
+  align-items: center;
+  gap: 6px;
+  font-size: clamp(11px, 1vw, 13px);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   line-height: 1;
 }
 
-.evals-fail {
-  color: var(--status-fail);
+.evals-output-label svg {
+  width: 1.1em;
+  height: 1.1em;
 }
 
-.evals-pass {
-  color: var(--status-pass);
+.evals-output-body {
+  display: grid;
+  gap: 8px;
+  font-size: clamp(12px, 1.2vw, 17px);
+  line-height: 1.35;
 }
 
-.evals-fail .evals-status-icon {
-  color: var(--pink-text);
+.evals-output-rule {
+  margin: 0;
+  line-height: 1.32;
 }
 
-.evals-pass .evals-status-icon {
-  color: var(--green-on-dark);
+.evals-output-sample {
+  padding: clamp(8px, 0.9vw, 12px);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.evals-output-pass .evals-output-sample {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.evals-output-body p {
+  margin: 0 0 0.35em;
+}
+
+.evals-output-body p:last-child {
+  margin-bottom: 0;
+}
+
+.evals-output-body ol {
+  margin: 0;
+  padding-left: 1.15em;
+}
+
+.evals-output-body li {
+  margin-bottom: 0.2em;
+}
+
+.evals-output-body li:last-child {
+  margin-bottom: 0;
+}
+
+.evals-output-fail strong {
+  font-weight: 600;
 }
 
 .skills-slide {
@@ -2434,7 +2477,7 @@ blockquote {
   .summary-grid h3,
   .trust-pillar-grid h3,
   .recap-flip-face h3,
-  .evals-task h3,
+  .evals-task-title,
   .anthro-label,
   .modes-menu-item strong,
   .skill-card-head code,
@@ -2450,7 +2493,15 @@ blockquote {
   font-weight: 400;
 }
 
-.slide :is(p, .body-copy, .lede, .intro-statement p, .evals-input, .evals-fail, .evals-pass) {
+.slide
+  :is(
+    p,
+    .body-copy,
+    .lede,
+    .intro-statement p,
+    .evals-input,
+    .evals-output-body
+  ) {
   font-weight: 400;
 }
 
@@ -2461,8 +2512,7 @@ blockquote {
     .lede,
     .intro-statement,
     .brevity-takeaway,
-    .evals-fail,
-    .evals-pass,
+    .evals-output-body,
     .trust-lede,
     .prompt-suggestion,
     .heuristic-list
@@ -2523,12 +2573,13 @@ blockquote {
   .brevity-slide,
   .trust-pillar-grid,
   .trust-microcopy-grid,
-  .evals-table-head,
-  .evals-row {
+  .evals-spec-head,
+  .evals-spec-row,
+  .evals-output-pair {
     grid-template-columns: 1fr;
   }
 
-  .evals-table-head {
+  .evals-spec-head {
     display: none;
   }
 
