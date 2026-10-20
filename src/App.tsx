@@ -728,26 +728,19 @@ const slides: Slide[] = [
     className: 'adversarial-slide-wrap statement-slide',
   },
   {
-    content: <TrustVerifyPillars />,
-    className: 'trust-slide-wrap',
-  },
-  {
     content: (
-      <div className="shaping-shift-slide">
-        <p className="body-copy shaping-shift-line">
-          <strong>Kiedyś:</strong> celowe <em>friction</em> w interfejsie.
-        </p>
-        <p className="body-copy shaping-shift-line">
-          <strong>Dziś:</strong> oprócz tego system prompty i ewaluacja (evals).
-        </p>
-        <p className="body-copy shaping-shift-punch">
-          <strong className="pink">
-            Nigdy nie pracowaliśmy tak blisko z engineeringiem!
-          </strong>
-        </p>
-      </div>
+      <>
+        <h2 className="display statement-display">
+          Kontrola i <span className="pink">krytycyzm</span>
+        </h2>
+        <p className="body-copy">Dobre praktyki w interfejsach</p>
+      </>
     ),
     className: 'statement-slide',
+  },
+  {
+    content: <TrustVerifyPillars />,
+    className: 'trust-slide-wrap',
   },
   {
     content: <SystemPromptMock showSuggestion={false} />,
@@ -828,14 +821,12 @@ const slides: Slide[] = [
       <div className="zendesk-example">
         <div className="zendesk-copy">
           <h2>
-            Siła mikrocopy:
-            <br />
+            Microcopy:{' '}
             <span className="green">AI w edytorze wiadomości</span>
           </h2>
           <p className="body-copy">
-            Powiedz, co AI potrafi — i że to Ty decydujesz, co trafi do
-            wiadomości. Rozwiń, uprość, przepisz; nic nie wychodzi bez Twojej
-            edycji i zatwierdzenia.
+            Pokazujemy, co AI potrafi. Agent-człowiek wie, jak może go użyć. Ma
+            kontrolę nad tym, co zostanie wysłane.
           </p>
         </div>
         <div className="zendesk-frames zendesk-frames-single">
