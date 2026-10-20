@@ -3,21 +3,19 @@ import type { ReactNode } from 'react'
 import tweetImage from './assets/joanna-maciejewska-tweet.png'
 import coIntelligenceCover from './assets/co-intelligence-book-cover.png'
 import bookCover from './assets/reverse-centaur-book-cover.png'
-import cakeLogo from './assets/cake-logo.svg'
-import thenLoom404 from './assets/then-loom-404.png'
-import thenAnalyticsEmpty from './assets/then-analytics-empty.png'
-import nowAskAboutCode from './assets/now-ask-about-code.png'
-import nowBloombergTakeaways from './assets/now-bloomberg-takeaways.png'
+import exampleInpostLockers from './assets/example-inpost-lockers.png'
+import exampleCoffeedeskDiscount from './assets/example-coffeedesk-discount.png'
 import zendeskAiPrompts from './assets/zendesk-ai-prompts.png'
 import zendeskAutoAssist from './assets/zendesk-auto-assist.png'
 import zendeskWhySuggestion from './assets/zendesk-why-suggestion.png'
-import joshuaPorterMicrocopy from './assets/joshua-porter-microcopy.png'
 import steerWithoutInterrupting from './assets/steer-without-interrupting.png'
 import blankBoxAnxiety from './assets/blank-box-anxiety.png'
 import notionAiFull from './assets/notion-ai-full.png'
 import modeScreens from './assets/mode-screens.png'
 import modeDialogue from './assets/mode-dialogue.png'
 import modePrompts from './assets/mode-prompts.png'
+import exampleBielikDisclaimer from './assets/example-bielik-disclaimer.png'
+import exampleDisclaimerSuggestionVerify from './assets/example-disclaimer-suggestion-verify.png'
 import linkedinQr from './assets/linkedin-qr.jpg'
 import thesisChatbot from './assets/thesis-chatbot.png'
 import './App.css'
@@ -101,26 +99,8 @@ function CyborgIcon() {
   )
 }
 
-function UxWritersOrigin() {
-  return (
-    <div className="origin-layout">
-      <h2 className="display statement-display origin-question">
-        Where do UX writers come from?
-      </h2>
-      <div className="origin-blocks">
-        <article>
-          <span className="card-label">Tech writing</span>
-          <h3>.md files are the AI standard</h3>
-          <p>Markdown: the LLM’s native language</p>
-        </article>
-        <article className="featured-card">
-          <span className="card-label">Marketing / copywriting</span>
-          <h3>Human spark</h3>
-          <p>Marketing knowledge and strong writing skills are still in demand</p>
-        </article>
-      </div>
-    </div>
-  )
+function UxSpeakInWordmark() {
+  return <span className="slide-chrome-label">speak in UX</span>
 }
 
 function BlankBoxAnxiety({ build }: { build: number }) {
@@ -128,13 +108,13 @@ function BlankBoxAnxiety({ build }: { build: number }) {
     <div className="blank-box-layout">
       <div className="blank-box-copy">
         <h2 className="slide-title wide-title">
-          <span className="pink">Blank box</span> anxiety
+          O co w ogóle mam pytać?
         </h2>
-        <p className="body-copy">
-          {build >= 1
-            ? 'Quick prompts answer: here’s what you can ask.'
-            : '“What am I even allowed to ask?”'}
-        </p>
+        {build >= 1 && (
+          <p className="body-copy">
+            Szybkie prompty odpowiadają: oto, o co możesz zapytać.
+          </p>
+        )}
       </div>
       <figure className={`blank-box-swap${build >= 1 ? ' is-cropped' : ''}`}>
         <img
@@ -150,32 +130,66 @@ function BlankBoxAnxiety({ build }: { build: number }) {
   )
 }
 
+type PromptModeId = 'screens' | 'dialogue' | 'prompts' | 'disclaimers'
+
+function ModesDisclaimersPreview() {
+  return (
+    <div className="modes-preview modes-preview-disclaimers">
+      <figure className="modes-disclaimer-shot">
+        <img
+          src={exampleBielikDisclaimer}
+          alt="Pole czatu Bielik z zastrzeżeniem pod polem: Bielik czasami popełnia błędy (jak każdy). Sprawdzaj ważne informacje!"
+        />
+      </figure>
+      <figure className="modes-disclaimer-shot">
+        <img
+          src={exampleDisclaimerSuggestionVerify}
+          alt="Odpowiedź AI z wersją uproszczoną komunikatu i zastrzeżeniem: To tylko sugestia. Zweryfikuj."
+        />
+      </figure>
+    </div>
+  )
+}
+
 function PromptModesExplore({
   activeId,
+  title,
 }: {
-  activeId: 'screens' | 'dialogue' | 'prompts'
+  activeId: PromptModeId
+  title?: ReactNode
 }) {
-  const modes = [
+  const modes: {
+    id: PromptModeId
+    label: string
+    detail: string
+    image?: string
+    alt?: string
+  }[] = [
     {
-      id: 'screens' as const,
-      label: 'Screens',
-      detail: 'Buttons, labels, fixed paths',
+      id: 'screens',
+      label: 'Ekrany',
+      detail: 'Przyciski, etykiety, ustalone ścieżki',
       image: modeScreens,
       alt: 'Select model menu showing Default, GPT-5.6 Terra, and GPT-5.6 Luna options.',
     },
     {
-      id: 'dialogue' as const,
-      label: 'Dialogue',
-      detail: 'Back-and-forth, contextual help',
+      id: 'dialogue',
+      label: 'Dialog',
+      detail: 'Wymiana zdań, pomoc w kontekście',
       image: modeDialogue,
       alt: 'Gdańsk dialogue options: check flight times versus Warsaw, or build a 48-hour weekend itinerary.',
     },
     {
-      id: 'prompts' as const,
-      label: 'Prompts',
-      detail: 'Intent, suggested or typed as freeform text',
+      id: 'prompts',
+      label: 'Prompty',
+      detail: 'Intencja — sugerowana lub wpisana swobodnie',
       image: modePrompts,
       alt: 'Tatra prompt suggestions for hiking apps, packing, mountain huts, via ferrata, and avalanche safety.',
+    },
+    {
+      id: 'disclaimers',
+      label: 'Zastrzeżenia',
+      detail: 'Disclaimery — oczekiwania i weryfikacja',
     },
   ]
 
@@ -184,7 +198,11 @@ function PromptModesExplore({
   return (
     <div className="modes-explore">
       <h2 className="slide-title wide-title modes-explore-title">
-        The world of <span className="green">prompt-driven UX</span>
+        {title ?? (
+          <>
+            Microcopy w <span className="green">narzędziach AI</span>
+          </>
+        )}
       </h2>
       <div className="modes-explore-body">
         <div className="modes-menu">
@@ -205,9 +223,13 @@ function PromptModesExplore({
             </div>
           ))}
         </div>
-        <div className={`modes-preview has-image modes-preview-${preview.id}`}>
-          <img src={preview.image} alt={preview.alt} />
-        </div>
+        {activeId === 'disclaimers' ? (
+          <ModesDisclaimersPreview />
+        ) : (
+          <div className={`modes-preview has-image modes-preview-${preview.id}`}>
+            <img src={preview.image} alt={preview.alt ?? ''} />
+          </div>
+        )}
       </div>
     </div>
   )
@@ -217,34 +239,32 @@ function SystemPromptMock({ showSuggestion }: { showSuggestion: boolean }) {
   return (
     <div className="prompt-mock">
       <div className="prompt-mock-copy">
-        <p className="kicker">System prompt</p>
         <h2 className="prompt-mock-heading">
-          Conversation design is in the <span className="green">details</span>
+          Projekt rozmowy siedzi w <span className="green">szczegółach</span>
         </h2>
         <p className="body-copy">
-          Content designers shape how AI agents respond
+          Content designerzy kształtują to, jak odpowiadają agenci AI
         </p>
       </div>
       <div className="prompt-mock-panel">
         <div className="prompt-mock-chrome">
           <span>system.md</span>
-          <span>v0.3 · draft</span>
         </div>
         <pre className="prompt-mock-code">
           <code>
-            <span className="prompt-line">You are a support assistant.</span>
+            <span className="prompt-line">Jesteś asystentem wsparcia.</span>
             {'\n'}
-            <span className="prompt-line">Be clear and concise.</span>
+            <span className="prompt-line">Pisz jasno i zwięźle.</span>
             {'\n'}
             <span
               className={`prompt-line is-hot${showSuggestion ? ' is-on' : ''}`}
             >
               {showSuggestion
-                ? 'Use short paragraphs. Bullets for 3+ steps. Bold only labels or critical warnings, never whole sentences.'
-                : 'Bold important words.'}
+                ? 'Krótkie akapity. Listy przy 3+ krokach. Pogrubiaj tylko etykiety lub krytyczne ostrzeżenia, nigdy całe zdania.'
+                : 'Pogrubiaj ważne słowa.'}
             </span>
             {'\n'}
-            <span className="prompt-line">Keep answers short.</span>
+            <span className="prompt-line">Odpowiedzi mają być krótkie.</span>
           </code>
         </pre>
         <aside
@@ -253,9 +273,9 @@ function SystemPromptMock({ showSuggestion }: { showSuggestion: boolean }) {
         >
           <span className="card-label">Content design</span>
           <p>
-            <strong>Formatting is structure, not decoration.</strong> Prefer:
-            “Use short paragraphs. Bullets for 3+ steps. Bold only labels or
-            critical warnings, never whole sentences.”
+            <strong>Format to struktura, nie dekoracja.</strong> Lepiej:
+            „Krótkie akapity. Listy przy 3+ krokach. Pogrubiaj tylko etykiety
+            lub krytyczne ostrzeżenia, nigdy całe zdania.”
           </p>
         </aside>
       </div>
@@ -264,74 +284,12 @@ function SystemPromptMock({ showSuggestion }: { showSuggestion: boolean }) {
 }
 
 function EvalsExamples() {
-  const cases = [
-    {
-      task: 'Formatting',
-      input: 'How do I reset my password?',
-      fail: (
-        <>
-          Whole sentences in bold. Walls of text. No bullets.
-        </>
-      ),
-      pass: (
-        <>
-          Paragraphs up to 3 sentences. Bullets for 3+ steps. Bold only labels
-          or warnings.
-        </>
-      ),
-    },
-    {
-      task: 'Tone',
-      input: 'This is the third time it failed.',
-      fail: '“I understand how frustrating that must feel…”',
-      pass: 'Name the limit. Offer the next concrete step.',
-    },
-  ]
-
   return (
-    <div className="evals-slide">
-      <div className="evals-intro">
-        <p className="kicker">Evals</p>
-        <h2 className="slide-title wide-title">
-          Test prompt changes with <strong>standardized tasks</strong>
-        </h2>
-      </div>
-      <div className="evals-table">
-        <div className="evals-table-head" aria-hidden="true">
-          <span>Task</span>
-          <span>User input</span>
-          <span className="evals-head-status">
-            <EvalFailIcon />
-            Fail
-          </span>
-          <span className="evals-head-status">
-            <EvalPassIcon />
-            Pass
-          </span>
-        </div>
-        {cases.map((item) => (
-          <article key={item.task} className="evals-row">
-            <div className="evals-task">
-              <h3>{item.task}</h3>
-            </div>
-            <p className="evals-input">
-              <span className="evals-quote">“{item.input}”</span>
-            </p>
-            <p className="evals-fail">
-              <span className="evals-status-icon" role="img" aria-label="Fail">
-                <EvalFailIcon />
-              </span>
-              <span>{item.fail}</span>
-            </p>
-            <p className="evals-pass">
-              <span className="evals-status-icon" role="img" aria-label="Pass">
-                <EvalPassIcon />
-              </span>
-              <span>{item.pass}</span>
-            </p>
-          </article>
-        ))}
-      </div>
+    <div className="evals-slide evals-slide-title-only">
+      <h2 className="display statement-display">
+        <span className="green">Evals:</span> sprawdzanie jakości odpowiedzi na
+        standardowych zadaniach
+      </h2>
     </div>
   )
 }
@@ -383,11 +341,11 @@ function QuickPromptSkill() {
     <div className="skills-slide">
       <div className="skills-intro">
         <h2 className="slide-title wide-title">
-          Claude skills that <span className="green">scale</span> the craft
+          Claude Skills, które <span className="green">skalują zasięg</span>
         </h2>
         <p className="skills-subhead">
-          Content designers write the rules. The skills scale them across the
-          org.
+          Osoby projektujące piszą reguły. Skille pomagają dotrzeć do całej
+          organizacji.
         </p>
       </div>
       <article className="skill-card is-peek">
@@ -396,20 +354,20 @@ function QuickPromptSkill() {
           <code>/quick-prompts</code>
         </div>
         <p>
-          Generates structured quick prompts that hold to the 2–4 word rule.
+          Generuje uporządkowane szybkie prompty zgodne z regułą 2–4 słów.
         </p>
         <div className="skill-output is-in">
           <div className="skill-output-examples">
-            <span>Create a trigger</span>
-            <span>Check duplicate triggers</span>
+            <span>Utwórz automatyzację</span>
+            <span>Sprawdź duplikaty</span>
             <span className="skill-output-check">
-              <EvalPassIcon /> 2–4 words · no I, me, my
+              <EvalPassIcon /> 2–4 słowa · bez „ja”, „mnie”, „mój”
             </span>
           </div>
           <p className="skill-credit">
-            Skill created by Liz Robins
+            Skill: Liz Robins
             <br />
-            (a fellow content designer at Zendesk)
+            (Content Designer w Zendesk)
           </p>
         </div>
       </article>
@@ -417,77 +375,121 @@ function QuickPromptSkill() {
   )
 }
 
-function RecapFlipCards({ flippedCount }: { flippedCount: number }) {
-  const cards = [
+function TrustVerifyPillars() {
+  const pillars = [
     {
-      oldFront: 'Microcopy',
-      oldBack: 'Sets expectations in fixed places',
-      newFront: 'Generated copy',
-      newBack: 'Controlled AI output',
+      title: 'Widoczność',
+      body:
+        'Pokaż, że to AI, co się dzieje (status, źródła, „dlaczego”) i gdzie kończy się pewność systemu.',
     },
     {
-      oldFront: 'Plain language',
-      oldBack: 'Classic plain language guidelines',
-      newFront: 'Plain language (still)',
-      newBack: 'Embedded in system prompts',
+      title: 'Kontrola',
+      body:
+        'Stop, edycja, odrzucenie, cofnięcie. Użytkownik może skorygować kurs — bez walki z interfejsem.',
     },
     {
-      oldFront: 'Content guidelines',
-      oldBack: 'Documentation for humans',
-      newFront: '.md files',
-      newBack: 'Human-readable, machine-parseable',
+      title: 'Zatwierdzenie',
+      body:
+        'Jawne zatwierdzenie przed wysyłką, publikacją lub akcją nieodwracalną. Domyślnie: do Twojej review, nie „już poszło”.',
+    },
+    {
+      title: 'Weryfikacja',
+      body:
+        'Zachęta do sprawdzenia, cytaty, checklisty. Evals w zespole i monitoring po wdrożeniu.',
     },
   ]
 
   return (
-    <div className="recap-flip">
-      <h2 className="slide-title wide-title">
-        What’s <span className="green">old</span>, what’s{' '}
-        <span className="pink">new</span>
+    <div className="trust-slide">
+      <h2 className="slide-title wide-title trust-slide-title">
+        Człowiek w pętli:{' '}
+        <span className="green">widoczność</span>,{' '}
+        <span className="pink">kontrola</span>, zatwierdzenie, weryfikacja
       </h2>
-      <div className="recap-flip-grid">
-        {cards.map((card, index) => (
-          <div
-            key={card.oldFront}
-            className={`recap-flip-card${
-              index < flippedCount ? ' is-flipped' : ''
-            }`}
-          >
-            <div className="recap-flip-inner">
-              <div className="recap-flip-face recap-flip-front">
-                <span className="card-label">What’s old</span>
-                <h3>{card.oldFront}</h3>
-                <p>{card.oldBack}</p>
-              </div>
-              <div className="recap-flip-face recap-flip-back">
-                <span className="card-label">What’s new</span>
-                <h3>{card.newFront}</h3>
-                <p>{card.newBack}</p>
-              </div>
-            </div>
-          </div>
+      <div className="trust-pillar-grid">
+        {pillars.map((pillar) => (
+          <article key={pillar.title}>
+            <h3>{pillar.title}</h3>
+            <p>{pillar.body}</p>
+          </article>
         ))}
       </div>
     </div>
   )
 }
 
+function TrustWorkplaceShift() {
+  return (
+    <div className="trust-work-slide">
+      <h2 className="display statement-display">
+        AI <span className="pink">podważa domyślne zaufanie</span> w pracy
+      </h2>
+      <p className="body-copy trust-lede">
+        Generujemy propozycje z AI i nawet ich nie sprawdzamy. Znormalizujmy
+        mówienie: „eksplorowałam to z AI”.
+        <br />
+        (I sprawdź, co w ogóle wrzucasz, serio.)
+      </p>
+      <cite className="research-cite">
+        <span className="research-title">
+          AI Is Breaking This Thing We Call Trust
+        </span>
+        <span className="research-meta">Terrible Software · 2026</span>
+      </cite>
+    </div>
+  )
+}
+
+function TrustVerifyMicrocopy() {
+  return (
+    <div className="trust-microcopy-slide">
+      <h2 className="slide-title wide-title">
+        To, co piszesz, buduje <span className="green">pętlę sprawdzania</span>
+      </h2>
+      <div className="trust-microcopy-grid">
+        <article className="anthro-avoid">
+          <span className="anthro-label">
+            <EvalFailIcon />
+            Słaba pętla
+          </span>
+          <ul>
+            <li>„Odpowiedź wysłana” — bez Twojego kroku</li>
+            <li>Brak statusu: nie wiesz, czy AI jeszcze „myśli”</li>
+            <li>Pewny ton bez źródeł i bez „sprawdź to”</li>
+          </ul>
+        </article>
+        <article className="anthro-instead">
+          <span className="anthro-label">
+            <EvalPassIcon />
+            Silna pętla
+          </span>
+          <ul>
+            <li>„Zatwierdź i wyślij” · „Odrzuć” · „Edytuj szkic”</li>
+            <li>„Generuję…” · „Może być niedokładne” · źródła / „dlaczego”</li>
+            <li>Jasne, co wymaga Twojej weryfikacji przed akcją</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  )
+}
+
 type Slide = {
-  eyebrow: string
   className?: string
   builds?: number
+  footerAffiliation?: string
+  footerExamples?: string
   content: ReactNode | ((build: number) => ReactNode)
 }
 
 const slides: Slide[] = [
   {
-    eyebrow: 'CAKE conf 2026 · Talk',
     content: (
       <>
-        <h1>
-          Designing the AI experience:{' '}
-          <span className="green">what’s old</span>,{' '}
-          <span className="pink">what’s new</span>?
+        <h1 className="hero-title">
+          Ufaj, ale sprawdzaj:{' '}
+          <span className="green">jak projektować</span>{' '}
+          <span className="pink">interakcje z AI</span>
         </h1>
         <p className="lede">Kalina Tyrkiel-Szymańska</p>
       </>
@@ -495,27 +497,30 @@ const slides: Slide[] = [
     className: 'hero-slide',
   },
   {
-    eyebrow: 'Hello',
+    footerAffiliation: 'Zendesk',
     content: (
       <div className="intro-grid">
-        <div>
-          <h2>Kalina Tyrkiel-Szymańska</h2>
-          <p className="role">Content Designer & UX Writing Trainer</p>
-          <p className="company">Zendesk</p>
+        <div className="intro-identity">
+          <div>
+            <h2>Kalina Tyrkiel-Szymańska</h2>
+            <p className="role">
+              Content Designer, trenerka UX writingu, wykładowczyni, psycholożka
+            </p>
+          </div>
         </div>
         <div className="intro-stack">
           <div className="intro-statement is-light">
             <p>
-              I design AI tools.
+              Projektuję narzędzia AI.
               <br />
-              I design with AI, too.
+              Projektuję z użyciem AI.
             </p>
           </div>
           <div className="intro-statement">
             <p>
-              I used to teach writing.
+              Kiedyś uczyłam głównie pisania.
               <br />
-              <strong>Now I teach how to work with AI.</strong>
+              Teraz uczę, jak pracować z AI.
             </p>
           </div>
         </div>
@@ -524,105 +529,57 @@ const slides: Slide[] = [
     className: 'intro-slide',
   },
   {
-    eyebrow: 'Microcopy',
-    content: (
-      <div className="microcopy-slide-layout">
-        <h2 className="microcopy-heading">
-          Writing microcopy <span className="green">(Joshua Porter, 2009)</span>
-        </h2>
-        <figure className="microcopy-frame">
-          <img
-            src={joshuaPorterMicrocopy}
-            alt="Billing form example from Joshua Porter highlighting microcopy: Be sure to enter the billing address associated with your credit card."
-          />
-        </figure>
-      </div>
-    ),
-    className: 'era-slide',
-  },
-  {
-    eyebrow: 'Then',
     content: (
       <div className="era-layout">
         <article className="era-card">
-          <span className="card-label">Then</span>
-          <h2>Fixed strings in fixed places</h2>
-          <p>Error states, empty states, labels: authored once, reused forever.</p>
+          <span className="card-label">Kiedyś</span>
+          <h2>Stałe teksty w stałych miejscach</h2>
+          <p>
+            Przyciski, etykiety, komunikaty błędu: napisane raz, zawsze brzmią
+            tak samo.
+          </p>
         </article>
-        <div className="era-examples">
-          <figure className="example-frame example-zoom-loom">
+        <div className="era-examples era-examples-ui">
+          <figure className="example-frame example-frame-light">
             <img
-              src={thenLoom404}
-              alt="Loom 404 page: Oops, we couldn't find this Loom. It may have been deleted or archived by its creator. Back to Homepage button."
+              src={exampleInpostLockers}
+              alt="InPost: Z których skrytek wygodniej wyciągniesz przesyłkę? — wybór Dowolnie, Wolę wyżej, Wolę niżej."
             />
           </figure>
-          <figure className="example-frame example-zoom-analytics">
+          <figure className="example-frame example-frame-light">
             <img
-              src={thenAnalyticsEmpty}
-              alt="Empty analytics state: Not enough plays yet. Once you get a few plays, we'll show your analytics here. Link: How to grow an audience."
+              src={exampleCoffeedeskDiscount}
+              alt="Coffeedesk: kod rabatowy — komunikat błędu „Kod rabatowy nie został rozpoznany”."
             />
           </figure>
         </div>
       </div>
     ),
     className: 'era-slide',
+    footerExamples: 'przykłady: Allegro, Coffeedesk',
   },
   {
-    eyebrow: 'The flip',
-    content: (
-      <>
-        <h2 className="display statement-display">
-          Gen AI <span className="pink">flips the script.</span>
-        </h2>
-        <div className="flip-grid">
-          <article>
-            <span className="card-label">Then</span>
-            <h3>Fixed strings in fixed places</h3>
-            <p>Error states, empty states, labels: authored once, reused forever.</p>
-          </article>
-          <article className="featured-card">
-            <span className="card-label">Now</span>
-            <h3>Prompted, conversational, probabilistic</h3>
-            <p>Interfaces shift toward prompting. Copy is generated in the moment.</p>
-          </article>
-        </div>
-      </>
-    ),
+    content: <PromptModesExplore activeId="screens" />,
+    className: 'modes-slide',
   },
   {
-    eyebrow: 'Now',
-    content: (
-      <div className="era-layout">
-        <article className="era-card featured-card">
-          <span className="card-label">Now</span>
-          <h2>Prompted, conversational, probabilistic</h2>
-          <p>Interfaces shift toward prompting. Copy is generated in the moment.</p>
-        </article>
-        <div className="era-examples">
-          <figure className="example-frame example-frame-dark example-zoom-ask">
-            <img
-              src={nowAskAboutCode}
-              alt="AI coding assistant empty state: Ask about your code. AI responses may be inaccurate. Generate Agent Instructions to onboard AI onto your codebase."
-            />
-          </figure>
-          <figure className="example-frame">
-            <img
-              src={nowBloombergTakeaways}
-              alt="Bloomberg AI takeaways card summarizing that the cost of intelligence is decreasing, attributed to Summary by Bloomberg AI."
-            />
-          </figure>
-        </div>
-      </div>
-    ),
-    className: 'era-slide',
+    content: <PromptModesExplore activeId="dialogue" />,
+    className: 'modes-slide',
   },
   {
-    eyebrow: 'Bio',
+    content: <PromptModesExplore activeId="prompts" />,
+    className: 'modes-slide',
+  },
+  {
+    content: <PromptModesExplore activeId="disclaimers" />,
+    className: 'modes-slide',
+  },
+  {
     content: (
       <div className="psych-bio-layout">
         <div className="psych-bio-copy">
           <h2 className="slide-title wide-title">
-            I’ve been into this for a while now…
+            Ten temat towarzyszy mi od dłuższego czasu…
           </h2>
         </div>
         <figure className="psych-bio-frame">
@@ -636,93 +593,99 @@ const slides: Slide[] = [
     className: 'psych-bio-slide',
   },
   {
-    eyebrow: 'The point',
     content: (
-      <h2 className="display statement-display language-quote">
+      <h2 className="display statement-display language-quote language-quote-italic">
         You can’t take the <span className="green">language</span>
         <br />
-        out of the <span className="pink">large language model</span>
+        out of the <span className="green">large language model</span>
       </h2>
     ),
     className: 'statement-slide',
   },
   {
-    eyebrow: 'Who’s in the room',
-    content: <UxWritersOrigin />,
-    className: 'origin-slide',
+    content: (
+      <h2 className="display statement-display">
+        Za bardzo <span className="green">ufamy</span> sztucznej inteligencji,
+        przez co <span className="green">niszczymy zaufanie</span> do nas.
+      </h2>
+    ),
+    className: 'statement-slide',
   },
   {
-    eyebrow: 'Prompt-driven UX',
-    content: <PromptModesExplore activeId="screens" />,
-    className: 'modes-slide',
+    content: (
+      <h2 className="display statement-display">
+        Generujemy dokumenty z AI.
+        <br />
+        Dokumenty, które czyta <span className="pink">tylko AI</span>.
+      </h2>
+    ),
+    className: 'statement-slide',
   },
   {
-    eyebrow: 'Prompt-driven UX',
-    content: <PromptModesExplore activeId="dialogue" />,
-    className: 'modes-slide',
+    content: <TrustWorkplaceShift />,
+    className: 'trust-work-slide-wrap statement-slide',
   },
   {
-    eyebrow: 'Prompt-driven UX',
-    content: <PromptModesExplore activeId="prompts" />,
-    className: 'modes-slide',
-  },
-  {
-    eyebrow: 'What changed for us',
     content: (
       <>
-        <h2 className="display statement-display">
-          How do we <span className="green">shape</span> that?
+        <h2 className="display statement-display statement-display-trust">
+          Z AI za szybko ufamy, że coś jest prawie gotowe.
         </h2>
-        <p className="body-copy">
-          Through system prompts and evals.{' '}
-          <strong className="pink">
-            We’ve never worked so closely with engineering before!
-          </strong>
+        <p className="body-copy trust-lede">
+          Z tą prezentacją miałam ten sam problem.
         </p>
       </>
     ),
     className: 'statement-slide',
   },
   {
-    eyebrow: 'System prompts',
-    content: <SystemPromptMock showSuggestion={false} />,
-    className: 'prompt-mock-slide',
-  },
-  {
-    eyebrow: 'System prompts',
-    content: <SystemPromptMock showSuggestion={true} />,
-    className: 'prompt-mock-slide',
-  },
-  {
-    eyebrow: 'Evals',
-    content: <EvalsExamples />,
-    className: 'evals-slide-wrap',
-  },
-  {
-    eyebrow: 'Brevity',
     content: (
-      <div className="brevity-slide">
-        <h2 className="display statement-display">
-          Content designers guard{' '}
-          <span className="green">brevity</span>
-        </h2>
-        <cite className="brevity-citation">
-          <span className="brevity-paper-title">
-            Brevity is the soul of sustainability: Characterizing LLM response
-            lengths
-          </span>
-          <span className="brevity-authors">
-            Soham Poddar, Paramita Koley, Janardan Misra, et al. (IIT Kharagpur,
-            ISI Kolkata, Accenture Labs)
-          </span>
-        </cite>
-        <p className="body-copy brevity-finding">
-          “In almost all cases, LLM responses are substantially longer than the
-          target response lengths, across all datasets.”
+      <div className="adversarial-slide">
+        <div className="adversarial-slide-copy">
+          <h2 className="slide-title wide-title">
+            Twoje AI potrzebuje krytyka.
+          </h2>
+          <p className="body-copy adversarial-slide-lede">
+            Zaangażuj <span className="term-italic">adversarial agent</span>.
+          </p>
+          <cite className="research-cite">
+            <span className="research-title">
+              When Your AI Needs an Enemy: The Case for Adversarial Agents
+            </span>
+            <span className="research-meta">Jatin Mishra · Medium</span>
+          </cite>
+        </div>
+        <div className="prompt-mock-panel adversarial-prompt">
+          <div className="prompt-mock-chrome">
+            <span>Agent-adwersarz</span>
+          </div>
+          <pre className="prompt-mock-code adversarial-prompt-code">
+            <code>
+              Szukaj błędów, luk, słabych miejsc w narracji. Znajdź miejsca,
+              gdzie słuchacz traci uwagę lub zaufanie. Nie poprawiaj, atakuj.
+            </code>
+          </pre>
+        </div>
+      </div>
+    ),
+    className: 'adversarial-slide-wrap statement-slide',
+  },
+  {
+    content: <TrustVerifyPillars />,
+    className: 'trust-slide-wrap',
+  },
+  {
+    content: (
+      <div className="shaping-shift-slide">
+        <p className="body-copy shaping-shift-line">
+          <strong>Kiedyś:</strong> celowe <em>friction</em> w interfejsie.
         </p>
-        <p className="brevity-takeaway">
+        <p className="body-copy shaping-shift-line">
+          <strong>Dziś:</strong> oprócz tego system prompty i ewaluacja (evals).
+        </p>
+        <p className="body-copy shaping-shift-punch">
           <strong className="pink">
-            Content designers fight for brevity in LLM outputs (trust me).
+            Nigdy nie pracowaliśmy tak blisko z engineeringiem!
           </strong>
         </p>
       </div>
@@ -730,23 +693,63 @@ const slides: Slide[] = [
     className: 'statement-slide',
   },
   {
-    eyebrow: 'The chaos',
+    content: <SystemPromptMock showSuggestion={false} />,
+    className: 'prompt-mock-slide',
+  },
+  {
+    content: <SystemPromptMock showSuggestion={true} />,
+    className: 'prompt-mock-slide',
+  },
+  {
+    content: <EvalsExamples />,
+    className: 'evals-slide-wrap',
+  },
+  {
+    content: (
+      <div className="brevity-slide">
+        <h2 className="display statement-display">
+          Content designerzy pilnują{' '}
+          <span className="green">zwięzłości</span>
+        </h2>
+        <cite className="brevity-citation">
+          <span className="brevity-paper-title">
+            Brevity is the soul of sustainability: Characterizing LLM response
+            lengths
+          </span>
+          <span className="brevity-authors">
+            Soham Poddar, Paramita Koley, Janardan Misra i in. (IIT Kharagpur,
+            ISI Kolkata, Accenture Labs)
+          </span>
+        </cite>
+        <p className="body-copy brevity-finding">
+          „W prawie wszystkich przypadkach odpowiedzi LLM są znacząco dłuższe
+          niż docelowa długość — na wszystkich zbiorach danych.”
+        </p>
+        <p className="brevity-takeaway">
+          <strong className="pink">
+            UX writerzy walczą o zwięzłość odpowiedzi LLMów (oj, walczą...)
+          </strong>
+        </p>
+      </div>
+    ),
+    className: 'statement-slide',
+  },
+  {
     builds: 1,
     content: (build) => <BlankBoxAnxiety build={build} />,
     className: 'era-slide blank-box-slide',
   },
   {
-    eyebrow: 'Example · Cursor',
     content: (
       <div className="cursor-example">
         <div className="cursor-example-copy">
-          <p className="kicker">Cursor</p>
           <h2 className="cursor-heading">
-            Set expectations and leave the user in control
+            Widoczność i kontrola w trakcie, nie po fakcie
           </h2>
           <p className="body-copy">
-            Visibility of system status · User control and freedom · Match to
-            the real world
+            Status agenta · koszt · stop · „steer without interrupting” — możesz
+            skorygować AI, zanim zatwierdzisz zmiany w kodzie. To jest pętla
+            weryfikacji w czasie rzeczywistym.
           </p>
         </div>
         <figure className="example-frame cursor-frame">
@@ -760,19 +763,22 @@ const slides: Slide[] = [
     className: 'era-slide',
   },
   {
-    eyebrow: 'Example · Zendesk',
+    content: <TrustVerifyMicrocopy />,
+    className: 'trust-microcopy-wrap',
+  },
+  {
     content: (
       <div className="zendesk-example">
         <div className="zendesk-copy">
-          <p className="kicker">Zendesk</p>
           <h2>
-            The power of microcopy:
+            Siła mikrocopy:
             <br />
-            <span className="green">AI in the message composer</span>
+            <span className="green">AI w edytorze wiadomości</span>
           </h2>
           <p className="body-copy">
-            Say what the AI can do: expand, simplify, rewrite, or invite to write
-            a custom prompt. Short, simple, timely.
+            Powiedz, co AI potrafi — i że to Ty decydujesz, co trafi do
+            wiadomości. Rozwiń, uprość, przepisz; nic nie wychodzi bez Twojej
+            edycji i zatwierdzenia.
           </p>
         </div>
         <div className="zendesk-frames zendesk-frames-single">
@@ -786,21 +792,19 @@ const slides: Slide[] = [
       </div>
     ),
     className: 'era-slide',
+    footerExamples: 'przykład: Zendesk',
   },
   {
-    eyebrow: 'Example · Zendesk',
     content: (
       <div className="zendesk-example zendesk-example-shot">
         <div className="zendesk-copy">
-          <p className="kicker">Zendesk</p>
           <h2>
-            Auto assist
-            <br />
-            <span className="pink">with a plain-language why</span>
+            Automatyczny asystent{' '}
+            <span className="pink">nie zastępuje myślenia</span>
           </h2>
           <p className="body-copy">
-            AI drafts the reply and shows its reasoning. A human still approves
-            before it ships.
+            AI proponuje odpowiedź. Agent obsługi klienta czyta, poprawia i
+            zatwierdza. Wciąż ma pełną kontrolę.
           </p>
         </div>
         <div className="zendesk-frames zendesk-frames-single">
@@ -814,21 +818,18 @@ const slides: Slide[] = [
       </div>
     ),
     className: 'era-slide',
+    footerExamples: 'przykład: Zendesk',
   },
   {
-    eyebrow: 'Example · Zendesk',
     content: (
       <div className="zendesk-example zendesk-example-shot">
         <div className="zendesk-copy">
-          <p className="kicker">Zendesk</p>
           <h2>
-            Auto assist
-            <br />
-            <span className="pink">with a plain-language why</span>
+            Automatyczny asystent pokazuje,{' '}
+            <span className="pink">skąd ta sugestia</span>
           </h2>
           <p className="body-copy">
-            AI drafts the reply and shows its reasoning. A human still approves
-            before it ships.
+            Agent może sprawdzić źródła i potwierdzić, czy AI działa prawidłowo.
           </p>
         </div>
         <div className="zendesk-frames zendesk-frames-why">
@@ -842,58 +843,49 @@ const slides: Slide[] = [
       </div>
     ),
     className: 'era-slide',
+    footerExamples: 'przykład: Zendesk',
   },
   {
-    eyebrow: 'Recap',
-    builds: 3,
-    content: (build) => <RecapFlipCards flippedCount={build} />,
-    className: 'recap-slide',
-  },
-  {
-    eyebrow: 'Psychology of AI',
     content: (
       <>
         <h2 className="display statement-display">
-          The words we choose shape what people{' '}
-          <span className="pink">believe</span> the AI is.
+          Słowa, których używamy, kształtują to, w co ludzie{' '}
+          <span className="pink">wierzą</span> w kwestii AI.
         </h2>
         <p className="body-copy">
-          Let’s talk about biases, and how to design around them
+          Porozmawiajmy o biasach — i o tym, jak copy wspiera weryfikację, a nie
+          ślepe zaufanie
         </p>
       </>
     ),
     className: 'statement-slide',
   },
   {
-    eyebrow: 'Anthropomorphism · 01',
     content: (
       <div className="anthro-slide">
-        <h2 className="slide-title wide-title">Emotional language</h2>
+        <h2 className="slide-title wide-title">Emocjonalny język</h2>
         <div className="anthro-pair">
           <article className="anthro-avoid">
             <span className="anthro-label">
               <EvalFailIcon />
-              Avoid
+              Unikaj
             </span>
             <div className="agent-output">
               <span className="agent-output-meta">Agent</span>
               <p>
-                I’m so sorry you’re dealing with this. I completely understand
-                how frustrating that must feel.
+                Bardzo mi przykro, że przez to przechodzisz. Doskonale rozumiem,
+                jak frustrujące to musi być.
               </p>
             </div>
           </article>
           <article className="anthro-instead">
             <span className="anthro-label">
               <EvalPassIcon />
-              Instead, try
+              Zamiast tego
             </span>
             <div className="agent-output">
               <span className="agent-output-meta">Agent</span>
-              <p>
-                I couldn’t find that order. Check the confirmation email, or
-                search by order number.
-              </p>
+              <p>Nie mogę znaleźć zamówienia w systemie.</p>
             </div>
           </article>
         </div>
@@ -905,43 +897,44 @@ const slides: Slide[] = [
             Abercrombie, Cercas Curry, Dinkar, Rieser, Talat · EMNLP 2023
           </span>
           <span className="research-finding">
-            Pseudo-empathy and emotion language push personification and
-            over-reliance, especially in high-risk contexts.
+            Pseudoempatia i język emocji wzmacniają personifikację i
+            nadmierne poleganie na systemie — szczególnie w kontekstach
+            wysokiego ryzyka.
           </span>
         </cite>
       </div>
     ),
   },
   {
-    eyebrow: 'Anthropomorphism · 02',
     content: (
       <div className="anthro-slide">
         <h2 className="slide-title wide-title">
-          <span className="green">“I”</span> / teammate framing
+          Agent nie jest <span className="green">w Twoim zespole</span>
         </h2>
         <div className="anthro-pair">
           <article className="anthro-avoid">
             <span className="anthro-label">
               <EvalFailIcon />
-              Avoid
+              Unikaj
             </span>
             <div className="agent-output">
               <span className="agent-output-meta">Agent</span>
               <p>
-                I’m your AI writing teammate. I’ll take it from here and draft
-                the empty state for us.
+                Cześć! Jestem Twoim asystentem do copy. Już piszę za Ciebie
+                tekst na pusty stan.
               </p>
             </div>
           </article>
           <article className="anthro-instead">
             <span className="anthro-label">
               <EvalPassIcon />
-              Instead, try
+              Zamiast tego
             </span>
             <div className="agent-output">
               <span className="agent-output-meta">Agent</span>
               <p>
-                Here’s the draft for the empty state. Review it before it ships.
+                Propozycja tekstu na pusty stan. Ty edytujesz i decydujesz, co
+                idzie do produktu.
               </p>
             </div>
           </article>
@@ -951,44 +944,43 @@ const slides: Slide[] = [
             Believing Anthropomorphism: Cues on Trust in LLMs
           </span>
           <span className="research-meta">
-            Cohn, Chang, et al. · CHI 2024 · n = 2,165
+            Cohn, Chang i in. · CHI 2024 · n = 2 165
           </span>
           <span className="research-finding">
-            In some contexts, first-person “I” made the same answers feel more
-            accurate and less risky to rely on.
+            „Ja” w odpowiedziach agenta często podnosiło ocenę trafności — nawet
+            gdy treść była taka sama.
           </span>
         </cite>
       </div>
     ),
   },
   {
-    eyebrow: 'Anthropomorphism · 03',
     content: (
       <div className="anthro-slide">
-        <h2 className="slide-title wide-title">Confident tone</h2>
+        <h2 className="slide-title wide-title">Pewny ton</h2>
         <div className="anthro-pair">
           <article className="anthro-avoid">
             <span className="anthro-label">
               <EvalFailIcon />
-              Avoid
+              Unikaj
             </span>
             <div className="agent-output">
               <span className="agent-output-meta">Agent</span>
               <p>
-                Use a modal. It’s the clearest way to get confirmation.
+                Użyj modala. To najjaśniejszy sposób na potwierdzenie.
               </p>
             </div>
           </article>
           <article className="anthro-instead">
             <span className="anthro-label">
               <EvalPassIcon />
-              Instead, try
+              Zamiast tego
             </span>
             <div className="agent-output">
               <span className="agent-output-meta">Agent</span>
               <p>
-                A modal can work for irreversible actions. Also consider an
-                inline confirm if the task is frequent.
+                Modal ma sens przy działaniach nieodwracalnych. Przy częstych
+                zadaniach rozważ też komunikat błędu przy polu tekstowym.
               </p>
             </div>
           </article>
@@ -1001,31 +993,28 @@ const slides: Slide[] = [
             Parasuraman &amp; Riley · Human Factors, 1997 · automation bias
           </span>
           <span className="research-finding">
-            When systems sound authoritative, people over-rely and skip their own
-            verification, even when the output is wrong.
+            Gdy system brzmi autorytatywnie, ludzie zbyt mocno na nim polegają
+            i pomijają własną weryfikację — nawet gdy output jest błędny.
           </span>
         </cite>
       </div>
     ),
   },
   {
-    eyebrow: 'The turn',
     content: (
       <h2 className="display statement-display language-quote">
-        We design AI experiences…
+        Projektujemy doświadczenia z AI…
         <br />
-        but how do we <span className="green">design with AI</span>?
+        ale jak <span className="green">projektować z AI</span>?
       </h2>
     ),
     className: 'statement-slide',
   },
   {
-    eyebrow: 'AI tooling example',
     content: <QuickPromptSkill />,
     className: 'skills-slide-wrap',
   },
   {
-    eyebrow: 'Wrong direction',
     content: (
       <figure className="media-frame tweet-frame">
         <img
@@ -1037,7 +1026,6 @@ const slides: Slide[] = [
     className: 'media-slide',
   },
   {
-    eyebrow: 'Ethan Mollick',
     content: (
       <figure className="media-frame">
         <img
@@ -1049,16 +1037,14 @@ const slides: Slide[] = [
     className: 'media-slide',
   },
   {
-    eyebrow: 'A useful metaphor',
     content: (
       <div className="metaphor-layout">
         <div>
-          <p className="kicker">Centaurs and cyborgs</p>
           <h2>
-            Centaurs keep the <span className="underlined">line</span> between
-            the person and the machine.
+            Centaur ma <span className="underlined">wyraźną</span> granicę między
+            człowiekiem i maszyną.
             <br />
-            For cyborgs, it’s <span className="blurred">blurred</span>.
+            U cyborga jest ona <span className="blurred">zatarta</span>.
           </h2>
         </div>
         <div className="mode-cards">
@@ -1067,7 +1053,7 @@ const slides: Slide[] = [
               <CentaurIcon />
               <span className="card-label">Centaur</span>
             </div>
-            <p>AI drafts the error messages. You decide which ones ship.</p>
+            <p>AI szkicuje komunikaty błędów. Ty decydujesz, co wychodzi na świat.</p>
           </article>
           <article className="featured-card">
             <div className="card-head">
@@ -1075,9 +1061,9 @@ const slides: Slide[] = [
               <span className="card-label">Cyborg</span>
             </div>
             <p>
-              You stay in the same flow. You propose, AI challenges, you change
-              it, AI challenges again. You and the AI make it together.
-              Ownership stays with you.
+              Zostajesz w tym samym flow. Proponujesz, AI podważa, poprawiasz,
+              AI znowu podważa. Robicie to razem — odpowiedzialność zostaje przy
+              tobie.
             </p>
           </article>
         </div>
@@ -1085,7 +1071,6 @@ const slides: Slide[] = [
     ),
   },
   {
-    eyebrow: 'Cory Doctorow',
     content: (
       <figure className="media-frame">
         <img
@@ -1097,15 +1082,13 @@ const slides: Slide[] = [
     className: 'media-slide',
   },
   {
-    eyebrow: 'Cory Doctorow’s warning',
     content: (
       <div className="metaphor-layout">
         <div>
-          <p className="kicker">Reverse centaur</p>
           <h2>
-            The machine decides.
+            Maszyna decyduje.
             <br />
-            <span className="pink">The human takes the blame.</span>
+            <span className="pink">Człowiek bierze winę na siebie.</span>
           </h2>
         </div>
         <div className="mode-cards">
@@ -1114,7 +1097,7 @@ const slides: Slide[] = [
               <CentaurIcon />
               <span className="card-label">Centaur</span>
             </div>
-            <p>AI drafts error messages. You decide which ones ship.</p>
+            <p>AI szkicuje komunikaty błędów. Ty decydujesz, co wychodzi na świat.</p>
           </article>
           <article className="reverse-card">
             <div className="card-head">
@@ -1124,8 +1107,8 @@ const slides: Slide[] = [
               <span className="card-label">Reverse centaur</span>
             </div>
             <p>
-              Someone prompts without context and ships the copy. You keep
-              fixing what ships, and you own the fallout.
+              Ktoś promptuje bez kontekstu i wypuszcza copy. Ty poprawiasz to, co
+              wychodzi — i odpowiadasz za skutki.
             </p>
           </article>
         </div>
@@ -1134,70 +1117,74 @@ const slides: Slide[] = [
     className: 'pink-wash',
   },
   {
-    eyebrow: 'Your turn',
     content: (
       <>
-        <blockquote>What is your centaur task?</blockquote>
+        <blockquote>Jakie jest Twoje zadanie centaura?</blockquote>
         <p className="small-instruction">
-          Asking for a new perspective? Drafting variants?
+          Prosisz o nową perspektywę? Szkicujesz warianty?
         </p>
       </>
     ),
     className: 'question-slide question-green',
   },
   {
-    eyebrow: 'Your turn',
     content: (
       <>
-        <blockquote>What is your reverse centaur task?</blockquote>
-        <p className="small-instruction">Where does the machine decide, and you take the blame?</p>
+        <blockquote>Jaki jest Twój odwrócony centaur?</blockquote>
+        <p className="small-instruction">
+          Gdzie AI pogarsza sprawę – i zrzuca winę na Ciebie?
+        </p>
       </>
     ),
     className: 'question-slide question-pink',
   },
   {
-    eyebrow: 'Takeaways',
     content: (
       <div className="summary-slide">
-        <h2 className="slide-title wide-title">Leave with this</h2>
+        <h2 className="slide-title wide-title">Zabierz ze sobą</h2>
         <div className="summary-grid">
-          <article>
-            <h3>Old craft, new surfaces</h3>
+          <article className="featured-card">
+            <h3>Ufaj, ale sprawdzaj</h3>
             <p>
-              Put microcopy and plain language into conversations, prompts, and
-              outputs.
+              Zaufanie w zespole i w UI: widoczność, kontrola, zatwierdzenie. Twoje
+              imię = rozumiesz i stoisz za tym, co wychodzi.
             </p>
           </article>
           <article>
-            <h3>Evals keep the bar high</h3>
-            <p>Partner with engineering. Test the AI outputs.</p>
+            <h3>Pętla w mikrocopy</h3>
+            <p>
+              Status, „może być niedokładne”, zatwierdź / edytuj / odrzuć.
+              Evals i monitoring po wdrożeniu.
+            </p>
           </article>
           <article>
-            <h3>Skills scale the craft</h3>
-            <p>Encode the rules and share the tools. Stay the centaur on what ships.</p>
+            <h3>Centaur, nie reverse centaur</h3>
+            <p>
+              AI szkicuje — Ty decydujesz. Zakoduj reguły w skillach; nie
+              wypuszczaj slopu podpisanym nazwiskiem.
+            </p>
           </article>
         </div>
       </div>
     ),
   },
   {
-    eyebrow: 'Thank you',
     content: (
       <div className="closing-layout">
         <div>
           <h2>
-            There’s still work to be done.
+            Ufaj, ale sprawdzaj —
             <br />
-            <span className="pink">Enjoy the ride!</span>
+            <span className="pink">i dobrej konferencji!</span>
           </h2>
         </div>
         <div className="closing-meta">
           <figure className="closing-qr">
             <img
               src={linkedinQr}
-              alt="QR code linking to Kalina Tyrkiel-Szymańska’s LinkedIn profile"
+              alt="Kod QR do profilu LinkedIn Kaliny Tyrkiel-Szymańskiej"
             />
-            <figcaption>Kalina on LinkedIn</figcaption>
+            <figcaption>Kalina na LinkedIn</figcaption>
           </figure>
         </div>
       </div>
@@ -1216,6 +1203,8 @@ function App() {
   const slide = slides[current]
   const maxBuild = slide.builds ?? 0
   const content = typeof slide.content === 'function' ? slide.content(build) : slide.content
+  const footerAffiliation = slide.footerAffiliation
+  const footerExamples = slide.footerExamples
 
   const goTo = useCallback((index: number) => {
     const next = Math.min(Math.max(index, 0), slides.length - 1)
@@ -1274,21 +1263,26 @@ function App() {
         <div className="ambient-shape shape-one" />
         <div className="ambient-shape shape-two" />
         <header className="slide-header">
-          <span className="wordmark">
-            <img src={cakeLogo} alt="" className="wordmark-logo" />
-            CAKE conf
-          </span>
-          <span>2026</span>
+          <UxSpeakInWordmark />
+          <span>27 października 2026</span>
         </header>
         <div className="slide-content">{content}</div>
         <footer className="slide-footer">
-          <span>Kalina Tyrkiel-Szymańska</span>
+          <div className="slide-footer-leading">
+            <span className="slide-footer-name">Kalina Tyrkiel-Szymańska</span>
+            {footerAffiliation && (
+              <span className="slide-footer-affiliation">{footerAffiliation}</span>
+            )}
+            {footerExamples && (
+              <span className="slide-footer-examples">{footerExamples}</span>
+            )}
+          </div>
           <div className="slide-nav">
             <button
               type="button"
               onClick={() => retreat()}
               disabled={current === 0 && build === 0}
-              aria-label="Previous slide"
+              aria-label="Poprzedni slajd"
             >
               ←
             </button>
@@ -1300,7 +1294,7 @@ function App() {
               type="button"
               onClick={() => advance()}
               disabled={current === slides.length - 1 && build >= maxBuild}
-              aria-label="Next slide"
+              aria-label="Następny slajd"
             >
               →
             </button>

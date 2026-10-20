@@ -1,61 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import './fonts/replica.css';
 
 :root {
-  /* Brand */
-  --black: #060606;
+  /* UX speak in 2026 */
+  --black: #0c1f4d;
   --white: #ffffff;
-  --off-white: #ececec;
-  --green: #009402;
-  --green-on-dark: #1fc01f;
-  --green-fill: #006802;
-  --green-wash: #00b504;
-  --pink: #e852a2;
-  --pink-text: #ff7ac0;
-  --pink-fill: #eb6bc2;
-  --muted: #b0b0b0;
+  --off-white: #e8f4ff;
+  --green: #00d4e8;
+  --green-on-dark: #3deaff;
+  --green-fill: #0097b8;
+  --green-wash: #00c4e0;
+  --pink: #7ee8ff;
+  --pink-text: #ffffff;
+  --pink-fill: #5adfff;
+  --muted: #9eb3d4;
 
   /* Surfaces */
-  --stage: #111111;
-  --surface: #121212;
-  --surface-raised: #1e1e1e;
-  --surface-code: #161616;
-  --surface-panel: #1a1a1a;
-  --surface-chrome: #2a2a2a;
-  --surface-light: #f3f3f3;
+  --stage: #071833;
+  --surface: #0f2858;
+  --surface-raised: #143066;
+  --surface-code: #0a1e45;
+  --surface-panel: #112a5c;
+  --surface-chrome: #1a3a72;
+  --surface-light: #eef6ff;
 
-  /* Text — all ≥ 7:1 on --black (WCAG AAA normal) */
-  --text-secondary: #d4d4d4;
-  --text-meta: #b0b0b0;
-  --text-dim: #b0b0b0;
-  --text-faint: #b0b0b0;
-  --text-soft: #c8c8c8;
-  --text-code: #d8d8d8;
-  /* Citations — WCAG AA normal (≥4.5:1 on black) */
-  --cite-meta: #787878;
-  --cite-body: #c0c0c0;
+  /* Text */
+  --text-secondary: #d4e4f7;
+  --text-meta: #9eb3d4;
+  --text-dim: #9eb3d4;
+  --text-faint: #8aa3c9;
+  --text-soft: #c5d9f2;
+  --text-code: #d8e8fa;
+  --cite-meta: #7a94bc;
+  --cite-body: #b8cce6;
 
   /* Status */
-  --status-fail: #ffc4e4;
-  --status-pass: #c8f5c8;
-  --status-pass-bright: #9dff9d;
+  --status-fail: #ffc9d4;
+  --status-pass: #b8f4ff;
+  --status-pass-bright: #3deaff;
 
   /* Borders */
-  --border-strong: #3a3a3a;
-  --border-light: #d8d8d8;
-  /* Product screenshots on dark slides */
+  --border-strong: #2a4a7a;
+  --border-light: #c5d9f2;
   --shot-border: 1px solid rgba(255, 255, 255, 0.22);
   --shot-radius: 6px;
 }
 
 html {
-  background: var(--black);
+  background: var(--stage);
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-family: 'Replica', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -67,6 +65,6 @@ a {
 }
 
 button:focus-visible {
-  outline: 3px solid var(--pink-text);
+  outline: 3px solid var(--green-on-dark);
   outline-offset: 3px;
 }

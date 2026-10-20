@@ -38,13 +38,17 @@ button {
   justify-content: space-between;
   text-transform: uppercase;
   letter-spacing: 0.13em;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .slide-header {
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  border-bottom: 2px solid var(--green-on-dark);
   font-size: clamp(10px, 0.95vw, 13px);
+}
+
+.slide-header > span:last-child {
+  color: var(--green-on-dark);
 }
 
 .slide-footer {
@@ -75,9 +79,52 @@ button {
   opacity: 0.28;
 }
 
-.intro-slide .slide-footer span:first-child,
-.hero-slide .slide-footer span:first-child {
+.hero-slide .slide-footer-leading {
   visibility: hidden;
+}
+
+.intro-slide .slide-footer-name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.slide-chrome-label {
+  font-size: clamp(9px, 0.75vw, 11px);
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.slide-footer-leading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35em 0.85em;
+  min-width: 0;
+}
+
+.slide-footer-examples {
+  font-size: clamp(9px, 0.75vw, 11px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--text-faint);
+}
+
+.slide-footer-affiliation {
+  font-size: clamp(10px, 0.95vw, 13px);
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--green-on-dark);
 }
 
 .wordmark {
@@ -87,13 +134,56 @@ button {
   font-size: clamp(12px, 1.15vw, 16px);
   letter-spacing: -0.04em;
   text-transform: none;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .wordmark-logo {
   width: clamp(14px, 1.5vw, 20px);
   height: auto;
   display: block;
+}
+
+.hero-slide h1.hero-title {
+  max-width: 24ch;
+  font-size: clamp(38px, 5.6vw, 84px);
+  line-height: 1.02;
+}
+
+.hero-slide .lede {
+  font-size: clamp(20px, 2.1vw, 34px);
+}
+
+.intro-identity {
+  display: grid;
+  gap: clamp(16px, 2vw, 28px);
+}
+
+.speaker-photo {
+  position: relative;
+  width: clamp(108px, 12vw, 168px);
+  margin: 0;
+}
+
+.speaker-photo::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: -10px;
+  bottom: -10px;
+  background: var(--green);
+  z-index: 0;
+}
+
+.speaker-photo img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%);
 }
 
 .slide-content {
@@ -118,7 +208,7 @@ h1 {
   font-size: clamp(38px, 5.8vw, 88px);
   line-height: 0.96;
   letter-spacing: -0.05em;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 h2 {
@@ -126,7 +216,11 @@ h2 {
   font-size: clamp(38px, 5.3vw, 84px);
   line-height: 0.96;
   letter-spacing: -0.05em;
-  font-weight: 700;
+  font-weight: 400;
+}
+
+h3 {
+  font-weight: 400;
 }
 
 .slide-title {
@@ -141,7 +235,7 @@ h2 {
 .lede {
   max-width: 28ch;
   font-size: clamp(16px, 1.5vw, 24px);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .green {
@@ -260,14 +354,12 @@ h2 {
 }
 
 .role {
-  margin: 24px 0 4px;
+  margin: 24px 0 0;
+  max-width: 22ch;
   color: var(--pink-text);
-  font-size: clamp(20px, 2.3vw, 36px);
-  font-weight: 700;
-}
-
-.company {
-  font-size: clamp(20px, 1.9vw, 30px);
+  font-size: clamp(18px, 2vw, 32px);
+  line-height: 1.2;
+  font-weight: 400;
 }
 
 .intro-statement {
@@ -306,6 +398,10 @@ h2 {
   letter-spacing: -0.04em;
 }
 
+.language-quote-italic {
+  font-style: italic;
+}
+
 .brevity-slide {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
@@ -333,7 +429,7 @@ h2 {
 .brevity-paper-title {
   color: var(--cite-body);
   font-size: clamp(13px, 1.25vw, 18px);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.3;
   letter-spacing: -0.01em;
 }
@@ -358,7 +454,7 @@ h2 {
 }
 
 .brevity-takeaway strong {
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .brevity-slide > :not(.statement-display) {
@@ -428,7 +524,7 @@ h2 {
 
 .modes-menu-item strong {
   font-size: clamp(20px, 1.9vw, 28px);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .modes-menu-item small {
@@ -469,6 +565,51 @@ h2 {
   max-height: min(36vh, 260px);
 }
 
+.modes-preview-disclaimers {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 5px;
+  align-content: center;
+  justify-items: stretch;
+  min-height: clamp(202px, 32vw, 344px);
+  height: 100%;
+  padding: 12px;
+  background: var(--stage);
+  border: var(--shot-border);
+  border-radius: var(--shot-radius);
+  overflow: hidden;
+}
+
+.modes-disclaimer-shot {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  min-height: 0;
+  padding: 8px 10px;
+  background: #1a1d24;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.modes-disclaimer-shot img {
+  display: block;
+  width: auto;
+  max-width: 92%;
+  max-height: min(15.5vh, 148px);
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.modes-disclaimer-shot:first-child img {
+  max-width: 76%;
+  max-height: min(10.5vh, 100px);
+}
+
+.modes-disclaimer-shot:last-child img {
+  max-width: 100%;
+  max-height: min(19.5vh, 188px);
+}
+
 .prompt-mock {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
@@ -502,7 +643,7 @@ h2 {
   gap: 12px;
   color: var(--text-faint);
   font-size: clamp(16px, 1.55vw, 22px);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -630,7 +771,7 @@ h2 {
   padding: 0 4px 6px;
   color: var(--text-dim);
   font-size: clamp(16px, 1.45vw, 22px);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
@@ -676,7 +817,7 @@ h2 {
 
 .evals-quote {
   color: var(--white);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .evals-fail,
@@ -763,7 +904,7 @@ h2 {
 .skill-card-head code {
   font-family: 'Space Grotesk', ui-monospace, monospace;
   font-size: clamp(20px, 1.9vw, 28px);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.02em;
 }
 
@@ -796,7 +937,7 @@ h2 {
 .skill-output-label {
   color: var(--text-dim);
   font-size: clamp(16px, 1.45vw, 22px);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -808,7 +949,7 @@ h2 {
   margin-top: 4px;
   color: var(--status-pass-bright);
   font-size: clamp(16px, 1.65vw, 24px);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .skill-output-check svg {
@@ -832,6 +973,31 @@ h2 {
 
 .statement-slide .language-quote {
   justify-self: stretch;
+}
+
+.shaping-shift-slide {
+  display: grid;
+  gap: clamp(14px, 2vw, 28px);
+  align-content: center;
+  height: 100%;
+}
+
+.shaping-shift-line {
+  margin: 0;
+  max-width: none;
+  font-size: clamp(22px, 2.5vw, 40px);
+  line-height: 1.35;
+}
+
+.shaping-shift-line em {
+  font-style: italic;
+}
+
+.shaping-shift-punch {
+  margin: clamp(8px, 1.2vw, 16px) 0 0;
+  max-width: none;
+  font-size: clamp(24px, 2.8vw, 44px);
+  line-height: 1.25;
 }
 
 .body-copy {
@@ -915,6 +1081,18 @@ h2 {
   min-height: 0;
 }
 
+.era-examples-ui .example-frame-light {
+  padding: clamp(8px, 1vw, 12px);
+  background: var(--white);
+}
+
+.era-examples-ui .example-frame-light img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+
 .example-frame {
   margin: 0;
   display: grid;
@@ -992,6 +1170,17 @@ h2 {
 
 .zendesk-example-shot .zendesk-copy .body-copy {
   max-width: 28ch;
+}
+
+.example-frame-dark-ui {
+  background: #1a1d24;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.example-frame-dark-ui img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .zendesk-copy h2 {
@@ -1078,7 +1267,7 @@ h2 {
 
 .blank-box-layout {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 0.68fr 1.32fr;
   gap: clamp(20px, 2.8vw, 40px);
   align-items: center;
   height: 100%;
@@ -1101,9 +1290,10 @@ h2 {
 
 .blank-box-swap {
   margin: 0;
-  justify-self: center;
-  width: min(100%, 360px);
-  padding: 14px;
+  justify-self: stretch;
+  width: 100%;
+  max-width: min(100%, 560px);
+  padding: clamp(12px, 1.4vw, 18px);
   background: var(--black);
   border: var(--shot-border);
   border-radius: var(--shot-radius);
@@ -1114,7 +1304,7 @@ h2 {
   display: block;
   width: 100%;
   height: auto;
-  max-height: min(52vh, 420px);
+  max-height: min(60vh, 520px);
   object-fit: contain;
 }
 
@@ -1137,6 +1327,17 @@ h2 {
   justify-content: stretch;
   align-content: center;
   height: 100%;
+}
+
+.zendesk-frames-disclaimers {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  height: 100%;
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.zendesk-frames-disclaimers .example-frame.zendesk-frame img {
+  max-height: min(46vh, 400px);
 }
 
 .zendesk-frames-why {
@@ -1198,7 +1399,7 @@ h2 {
 .example-placeholder-card p {
   margin: 0;
   font-size: clamp(20px, 2.1vw, 32px);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .era-slide .slide-content {
@@ -1331,7 +1532,7 @@ h2 {
   color: var(--pink-text);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .comparison {
@@ -1367,7 +1568,7 @@ h2 {
 
 .comparison .emphasis {
   color: var(--pink-text);
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .comparison .featured-card .emphasis {
@@ -1474,7 +1675,7 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .arrow {
@@ -1511,7 +1712,7 @@ h2 {
 
 .scale-steps span {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .scale-steps strong {
@@ -1535,7 +1736,7 @@ h2 {
   color: var(--black);
   background: var(--off-white);
   font-size: clamp(16px, 1.75vw, 28px);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -1594,7 +1795,7 @@ h2 {
 
 .chaos-list span {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.08em;
 }
 
@@ -1639,7 +1840,7 @@ h2 {
   margin: 0;
   color: var(--pink-text);
   font-size: clamp(20px, 1.9vw, 30px);
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .demo-blank {
@@ -1757,6 +1958,200 @@ h2 {
   letter-spacing: -0.03em;
 }
 
+.statement-display-trust {
+  max-width: 20ch;
+}
+
+.trust-lede {
+  max-width: 52ch;
+  margin-top: clamp(16px, 2vw, 28px);
+  font-size: clamp(18px, 1.85vw, 28px);
+  line-height: 1.45;
+}
+
+.trust-work-slide {
+  display: grid;
+  gap: clamp(12px, 1.6vw, 20px);
+  align-content: center;
+}
+
+.trust-work-slide .statement-display {
+  max-width: 22ch;
+}
+
+.trust-work-slide .research-cite {
+  margin-top: clamp(4px, 0.8vw, 12px);
+}
+
+.adversarial-slide {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: clamp(20px, 2.8vw, 40px);
+  align-items: center;
+  height: 100%;
+  min-height: 0;
+}
+
+.adversarial-slide-copy {
+  display: grid;
+  gap: clamp(10px, 1.35vw, 16px);
+  align-content: center;
+  min-height: 0;
+}
+
+.adversarial-slide .slide-title {
+  margin-bottom: 0;
+  font-size: clamp(26px, 3vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.adversarial-slide-lede {
+  margin: 0;
+  max-width: 28ch;
+  font-size: clamp(17px, 1.75vw, 26px);
+  line-height: 1.35;
+}
+
+.term-italic {
+  font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  font-style: italic;
+}
+
+.adversarial-prompt {
+  align-self: center;
+  min-height: 0;
+}
+
+.adversarial-prompt-code {
+  font-size: clamp(14px, 1.42vw, 21px);
+  line-height: 1.45;
+  padding: clamp(14px, 1.6vw, 22px);
+}
+
+.adversarial-slide .research-cite {
+  margin-top: 0;
+}
+
+.trust-standing-lede {
+  margin: clamp(12px, 1.4vw, 20px) 0 0;
+  max-width: 36ch;
+}
+
+.trust-standing-slide {
+  height: 100%;
+  justify-items: start;
+}
+
+.trust-standing-slide .statement-display {
+  max-width: 22ch;
+}
+
+.evals-slide-title-only {
+  display: grid;
+  align-content: center;
+  height: 100%;
+}
+
+.evals-slide-title-only .statement-display {
+  max-width: 28ch;
+}
+
+.trust-slide {
+  display: grid;
+  gap: clamp(14px, 2vw, 24px);
+  align-content: center;
+  height: 100%;
+}
+
+.trust-slide-title {
+  margin-bottom: 0;
+  font-size: clamp(26px, 3vw, 44px);
+}
+
+.trust-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.trust-pillar-grid article {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-height: clamp(120px, 16vw, 200px);
+  padding: clamp(16px, 2vw, 28px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: var(--surface-raised);
+}
+
+.trust-pillar-grid article:nth-child(1) {
+  color: var(--black);
+  background: var(--off-white);
+  border-color: var(--off-white);
+}
+
+.trust-pillar-grid article:nth-child(2) {
+  color: var(--black);
+  background: var(--pink-fill);
+  border-color: var(--pink-fill);
+}
+
+.trust-pillar-grid article:nth-child(3) {
+  color: var(--white);
+  background: var(--green-fill);
+  border-color: var(--green-fill);
+}
+
+.trust-pillar-grid article:nth-child(4) {
+  color: var(--white);
+  background: var(--surface-panel);
+  border-color: rgba(61, 234, 255, 0.45);
+}
+
+.trust-pillar-grid h3 {
+  margin: 0;
+  font-size: clamp(18px, 2vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.trust-pillar-grid p {
+  margin: 0;
+  font-size: clamp(15px, 1.45vw, 22px);
+  line-height: 1.35;
+}
+
+.trust-microcopy-slide {
+  display: grid;
+  gap: clamp(12px, 1.6vw, 20px);
+  align-content: center;
+}
+
+.trust-microcopy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.trust-microcopy-grid ul {
+  margin: 0;
+  padding-left: 1.1em;
+  font-size: clamp(15px, 1.45vw, 22px);
+  line-height: 1.4;
+}
+
+.trust-microcopy-grid .anthro-avoid,
+.trust-microcopy-grid .anthro-instead {
+  padding: clamp(16px, 2vw, 24px);
+}
+
+.evals-lede {
+  max-width: 48ch;
+  margin: 0 0 clamp(12px, 1.5vw, 20px);
+  font-size: clamp(15px, 1.4vw, 20px);
+}
+
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1836,7 +2231,7 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: clamp(11px, 1vw, 13px);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1;
 }
 
@@ -1885,7 +2280,7 @@ h2 {
   display: block;
   margin-bottom: 6px;
   font-size: clamp(12px, 1.1vw, 15px);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: inherit;
@@ -1917,7 +2312,7 @@ h2 {
 .research-title {
   color: var(--cite-body);
   font-size: clamp(13px, 1.25vw, 18px);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.3;
   letter-spacing: -0.01em;
 }
@@ -1969,13 +2364,13 @@ blockquote {
   font-size: clamp(34px, 5vw, 76px);
   line-height: 1.02;
   letter-spacing: -0.05em;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .small-instruction {
   margin: 24px 0 0;
   font-size: clamp(22px, 2vw, 34px);
-  font-weight: 600;
+  font-weight: 400;
   color: var(--text-secondary);
 }
 
@@ -2014,7 +2409,7 @@ blockquote {
   max-width: none;
   margin-left: auto;
   font-size: clamp(14px, 1.3vw, 18px);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-meta);
@@ -2024,6 +2419,55 @@ blockquote {
 .closing-meta p {
   margin: 0 0 0.35em;
   font-size: clamp(20px, 1.9vw, 30px);
+  font-weight: 400;
+}
+
+/* Lighter headings; body copy stays regular (400), emphasis in body stays 600 */
+.slide :is(
+  .display,
+  .slide-title,
+  .kicker,
+  .card-label,
+  .microcopy-heading,
+  .cursor-heading,
+  .prompt-mock-heading,
+  .summary-grid h3,
+  .trust-pillar-grid h3,
+  .recap-flip-face h3,
+  .evals-task h3,
+  .anthro-label,
+  .modes-menu-item strong,
+  .skill-card-head code,
+  .brevity-paper-title,
+  .research-title,
+  .closing-qr figcaption,
+  .comparison .emphasis
+) {
+  font-weight: 400;
+}
+
+.slide :is(h1, h2, h3, blockquote, .display, .slide-title) :is(strong, b) {
+  font-weight: 400;
+}
+
+.slide :is(p, .body-copy, .lede, .intro-statement p, .evals-input, .evals-fail, .evals-pass) {
+  font-weight: 400;
+}
+
+.slide
+  :is(
+    p,
+    .body-copy,
+    .lede,
+    .intro-statement,
+    .brevity-takeaway,
+    .evals-fail,
+    .evals-pass,
+    .trust-lede,
+    .prompt-suggestion,
+    .heuristic-list
+  )
+  :is(strong, b) {
   font-weight: 600;
 }
 
@@ -2077,6 +2521,8 @@ blockquote {
   .psych-bio-layout,
   .prompt-mock,
   .brevity-slide,
+  .trust-pillar-grid,
+  .trust-microcopy-grid,
   .evals-table-head,
   .evals-row {
     grid-template-columns: 1fr;
@@ -2094,7 +2540,8 @@ blockquote {
 
   .zendesk-frames,
   .zendesk-frames-single,
-  .zendesk-frames-why {
+  .zendesk-frames-why,
+  .zendesk-frames-disclaimers {
     grid-template-columns: 1fr;
   }
 
