@@ -538,45 +538,6 @@ function TrustVerificationSlide() {
   )
 }
 
-function TrustVerifyPillars() {
-  const pillars = [
-    {
-      title: 'Widoczność',
-      example: 'Szkic AI · na podstawie 3 źródeł',
-    },
-    {
-      title: 'Kontrola',
-      example: 'Edytuj szkic · Odrzuć',
-    },
-    {
-      title: 'Zatwierdzenie',
-      example: 'Zatwierdź i wyślij',
-    },
-    {
-      title: 'Weryfikacja',
-      example: 'To tylko sugestia. Zweryfikuj.',
-    },
-  ]
-
-  return (
-    <div className="trust-slide">
-      <h2 className="slide-title wide-title trust-slide-title">
-        Człowiek w pętli:{' '}
-        <span className="green">widoczność</span>,{' '}
-        <span className="pink">kontrola</span>, zatwierdzenie, weryfikacja
-      </h2>
-      <div className="trust-pillar-grid">
-        {pillars.map((pillar) => (
-          <article key={pillar.title}>
-            <h3>{pillar.title}</h3>
-            <p className="trust-pillar-example">„{pillar.example}”</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 function TrustWorkplaceShift() {
   return (
     <div className="trust-work-slide">
