@@ -8,7 +8,6 @@ import exampleCoffeedeskDiscount from './assets/example-coffeedesk-discount.png'
 import zendeskAiPrompts from './assets/zendesk-ai-prompts.png'
 import zendeskAutoAssist from './assets/zendesk-auto-assist.png'
 import zendeskWhySuggestion from './assets/zendesk-why-suggestion.png'
-import steerWithoutInterrupting from './assets/steer-without-interrupting.png'
 import blankBoxAnxiety from './assets/blank-box-anxiety.png'
 import notionAiFull from './assets/notion-ai-full.png'
 import modeScreens from './assets/mode-screens.png'
@@ -386,56 +385,6 @@ function EvalPassIcon() {
   )
 }
 
-function SkillSparkIcon() {
-  return (
-    <svg className="skill-spark" viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M12 2.5 13.8 9.2 20.5 11 13.8 12.8 12 19.5 10.2 12.8 3.5 11 10.2 9.2Z"
-        fill="currentColor"
-      />
-    </svg>
-  )
-}
-
-function QuickPromptSkill() {
-  return (
-    <div className="skills-slide">
-      <div className="skills-intro">
-        <h2 className="slide-title wide-title">
-          Claude Skills, które <span className="green">skalują zasięg</span>
-        </h2>
-        <p className="skills-subhead">
-          Osoby projektujące piszą reguły. Skille pomagają dotrzeć do całej
-          organizacji.
-        </p>
-      </div>
-      <article className="skill-card is-peek">
-        <div className="skill-card-head">
-          <SkillSparkIcon />
-          <code>/quick-prompts</code>
-        </div>
-        <p>
-          Generuje uporządkowane szybkie prompty zgodne z regułą 2–4 słów.
-        </p>
-        <div className="skill-output is-in">
-          <div className="skill-output-examples">
-            <span>Utwórz automatyzację</span>
-            <span>Sprawdź duplikaty</span>
-            <span className="skill-output-check">
-              <EvalPassIcon /> 2–4 słowa · bez „ja”, „mnie”, „mój”
-            </span>
-          </div>
-          <p className="skill-credit">
-            Skill: Liz Robins
-            <br />
-            (Content Designer w Zendesk)
-          </p>
-        </div>
-      </article>
-    </div>
-  )
-}
-
 function TrustVisibilitySlide() {
   return (
     <div className="trust-visibility-slide">
@@ -807,28 +756,6 @@ const slides: Slide[] = [
   },
   {
     content: (
-      <div className="cursor-example">
-        <div className="cursor-example-copy">
-          <h2 className="cursor-heading">
-            Widoczność i kontrola w trakcie, nie po fakcie
-          </h2>
-          <p className="body-copy">
-            Status agenta, koszt, możliwość korekcji w trakcie pracy. Widoczny
-            przycisk „stop” — weryfikacja pracy agenta AI w czasie rzeczywistym.
-          </p>
-        </div>
-        <figure className="example-frame cursor-frame">
-          <img
-            src={steerWithoutInterrupting}
-            alt="Cursor agent input showing placeholder microcopy: Steer without interrupting, with Auto Cost and a stop control."
-          />
-        </figure>
-      </div>
-    ),
-    className: 'era-slide',
-  },
-  {
-    content: (
       <div className="zendesk-example">
         <div className="zendesk-copy">
           <h2>
@@ -980,8 +907,7 @@ const slides: Slide[] = [
             <div className="agent-output">
               <span className="agent-output-meta">Agent</span>
               <p>
-                Cześć! Jestem Twoim asystentem do copy. Już piszę za Ciebie
-                tekst na pusty stan.
+                Cześć! Jako Twój asystent tworzę za Ciebie copy do interfejsu.
               </p>
             </div>
           </article>
@@ -993,8 +919,7 @@ const slides: Slide[] = [
             <div className="agent-output">
               <span className="agent-output-meta">Agent</span>
               <p>
-                Propozycja tekstu na pusty stan. Ty edytujesz i decydujesz, co
-                idzie do produktu.
+                Oto 3 propozycje. Zdecyduj, która pasuje najlepiej.
               </p>
             </div>
           </article>
@@ -1069,10 +994,6 @@ const slides: Slide[] = [
       </h2>
     ),
     className: 'statement-slide',
-  },
-  {
-    content: <QuickPromptSkill />,
-    className: 'skills-slide-wrap',
   },
   {
     content: (
