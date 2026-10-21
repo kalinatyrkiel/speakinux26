@@ -389,6 +389,10 @@ h3 {
   line-height: 1.05;
 }
 
+.statement-keep {
+  white-space: nowrap;
+}
+
 .language-quote {
   max-width: none;
   width: 100%;
@@ -1315,6 +1319,7 @@ h3 {
   align-items: center;
   height: 100%;
   min-height: 0;
+  overflow: hidden;
 }
 
 .blank-box-copy {
@@ -1333,9 +1338,11 @@ h3 {
 
 .blank-box-swap {
   margin: 0;
-  justify-self: stretch;
+  justify-self: end;
   width: 100%;
-  max-width: min(100%, 560px);
+  max-width: min(100%, 520px);
+  max-height: min(46vh, 400px);
+  min-height: 0;
   padding: clamp(12px, 1.4vw, 18px);
   background: var(--black);
   border: var(--shot-border);
@@ -1346,16 +1353,26 @@ h3 {
 .blank-box-swap img {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
-  max-height: min(60vh, 520px);
+  max-height: min(40vh, 360px);
   object-fit: contain;
+  object-position: top center;
+}
+
+.blank-box-swap.is-cropped {
+  display: flex;
+  align-items: flex-start;
+  height: min(44vh, 380px);
+  max-height: min(44vh, 380px);
 }
 
 .blank-box-swap.is-cropped img {
-  max-height: none;
-  transform: translateY(-20%);
-  /* Collapse the empty space left by translateY (20% of image height ≈ 28.9% of width) */
-  margin-bottom: -28.9%;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .zendesk-frames {
@@ -1448,6 +1465,11 @@ h3 {
 .era-slide .slide-content {
   align-content: stretch;
   padding-block: clamp(16px, 2.15vw, 32px);
+}
+
+.blank-box-slide .slide-content {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .microcopy-slide-layout {
@@ -2112,6 +2134,148 @@ h3 {
   font-size: clamp(26px, 3vw, 44px);
 }
 
+.trust-visibility-slide,
+.trust-pillar-example-slide {
+  display: grid;
+  gap: clamp(10px, 1.4vw, 16px);
+  align-content: center;
+  height: 100%;
+  min-height: 0;
+}
+
+.trust-pillar-lede {
+  margin: 0;
+  max-width: 48ch;
+  font-size: clamp(15px, 1.45vw, 22px);
+  line-height: 1.35;
+}
+
+.trust-pillar-example-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.trust-control-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.68fr) minmax(0, 1.32fr);
+  grid-template-rows: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 10px;
+  min-height: 0;
+  height: 100%;
+}
+
+.trust-control-feedback {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+}
+
+.trust-control-model {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.trust-control-memory {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.trust-control-layout .trust-visibility-card {
+  min-height: 0;
+}
+
+.trust-control-layout .trust-visibility-shot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.trust-control-layout .trust-visibility-shot img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.trust-control-layout .is-feedback img {
+  max-height: min(36vh, 320px);
+  object-position: center;
+}
+
+.trust-control-layout .is-model img {
+  max-height: min(24vh, 210px);
+  object-position: left center;
+}
+
+.trust-control-layout .is-memory img {
+  max-height: min(22vh, 200px);
+  object-position: top left;
+}
+
+.trust-visibility-card-single {
+  min-height: 0;
+}
+
+.trust-visibility-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 8px;
+  min-height: 0;
+}
+
+.trust-visibility-card h3 {
+  margin: 0;
+  font-size: clamp(15px, 1.4vw, 20px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--text-secondary);
+}
+
+.trust-visibility-shot {
+  margin: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--shot-radius);
+  border: var(--shot-border);
+  background: #0a0a0a;
+}
+
+.trust-visibility-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: min(42vh, 360px);
+  object-fit: cover;
+  object-position: top center;
+}
+
+.trust-visibility-shot.is-system img {
+  object-fit: contain;
+  object-position: top center;
+  max-height: min(46vh, 400px);
+}
+
+.trust-visibility-shot.is-zendesk {
+  background: var(--white);
+}
+
+.trust-visibility-shot.is-zendesk img {
+  object-fit: contain;
+  object-position: top center;
+  max-height: min(48vh, 420px);
+}
+
+.trust-visibility-shot.is-ui img {
+  object-fit: contain;
+  object-position: top center;
+  max-height: min(44vh, 380px);
+}
+
 .trust-pillar-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -2159,7 +2323,7 @@ h3 {
   letter-spacing: -0.03em;
 }
 
-.trust-pillar-grid p {
+.trust-pillar-example {
   margin: 0;
   font-size: clamp(15px, 1.45vw, 22px);
   line-height: 1.35;
@@ -2417,11 +2581,17 @@ blockquote {
   color: var(--text-secondary);
 }
 
+.closing-slide .slide-content {
+  align-content: center;
+}
+
 .closing-layout {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  align-items: end;
+  align-items: center;
   gap: 8%;
+  height: 100%;
+  min-height: 0;
 }
 
 .closing-lede {
@@ -2572,6 +2742,8 @@ blockquote {
   .prompt-mock,
   .brevity-slide,
   .trust-pillar-grid,
+  .trust-pillar-example-grid,
+  .trust-control-layout,
   .trust-microcopy-grid,
   .evals-spec-head,
   .evals-spec-row,

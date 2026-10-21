@@ -18,6 +18,10 @@ import exampleBielikDisclaimer from './assets/example-bielik-disclaimer.png'
 import exampleDisclaimerSuggestionVerify from './assets/example-disclaimer-suggestion-verify.png'
 import linkedinQr from './assets/linkedin-qr.jpg'
 import thesisChatbot from './assets/thesis-chatbot.png'
+import exampleVisibilitySystemState from './assets/example-visibility-system-state.png'
+import exampleControlFeedback from './assets/example-control-feedback.png'
+import exampleControlModelPicker from './assets/example-control-model-picker.png'
+import exampleControlMemory from './assets/example-control-memory.png'
 import './App.css'
 
 function CentaurIcon() {
@@ -116,7 +120,7 @@ function BlankBoxAnxiety({ build }: { build: number }) {
           </p>
         )}
       </div>
-      <figure className={`blank-box-swap${build >= 1 ? ' is-cropped' : ''}`}>
+      <figure className="blank-box-swap">
         <img
           src={build >= 1 ? notionAiFull : blankBoxAnxiety}
           alt={
@@ -432,27 +436,125 @@ function QuickPromptSkill() {
   )
 }
 
+function TrustVisibilitySlide() {
+  return (
+    <div className="trust-visibility-slide">
+      <h2 className="slide-title wide-title trust-slide-title">
+        <span className="green">Widoczność</span>
+      </h2>
+      <article className="trust-visibility-card trust-visibility-card-single">
+        <h3>Źródła i stan systemu</h3>
+        <figure className="trust-visibility-shot is-system">
+          <img
+            src={exampleVisibilitySystemState}
+            alt="ChatGPT: Working for 29s, plan działania i Searching 16 websites z listą domen."
+          />
+        </figure>
+      </article>
+    </div>
+  )
+}
+
+function TrustControlSlide() {
+  return (
+    <div className="trust-pillar-example-slide">
+      <h2 className="slide-title wide-title trust-slide-title">
+        <span className="green">Kontrola</span>
+      </h2>
+      <div className="trust-control-layout">
+        <article className="trust-visibility-card trust-control-feedback">
+          <h3>Feedback</h3>
+          <figure className="trust-visibility-shot is-feedback">
+            <img
+              src={exampleControlFeedback}
+              alt="Good response / Bad response — menu oceny odpowiedzi."
+            />
+          </figure>
+        </article>
+        <article className="trust-visibility-card trust-control-model">
+          <h3>Wybór modelu</h3>
+          <figure className="trust-visibility-shot is-model">
+            <img
+              src={exampleControlModelPicker}
+              alt="Lista modeli z opisem i wersją, np. Claude Sonnet 5.5 High."
+            />
+          </figure>
+        </article>
+        <article className="trust-visibility-card trust-control-memory">
+          <h3>Pamięć (Memory)</h3>
+          <figure className="trust-visibility-shot is-memory">
+            <img
+              src={exampleControlMemory}
+              alt="Memory summary — podsumowanie zapisanej pamięci o użytkowniku."
+            />
+          </figure>
+        </article>
+      </div>
+    </div>
+  )
+}
+
+function TrustApprovalSlide() {
+  return (
+    <div className="trust-pillar-example-slide">
+      <h2 className="slide-title wide-title trust-slide-title">
+        <span className="green">Zatwierdzenie</span>
+      </h2>
+      <p className="body-copy trust-pillar-lede">
+        AI proponuje odpowiedź. Agent-człowiek czyta, poprawia i zatwierdza. Ma
+        pełną kontrolę.
+      </p>
+      <article className="trust-visibility-card trust-visibility-card-single">
+        <figure className="trust-visibility-shot is-zendesk">
+          <img
+            src={zendeskAutoAssist}
+            alt="Zendesk Auto assist: szkic odpowiedzi i przycisk Approve przed wysyłką."
+          />
+        </figure>
+      </article>
+    </div>
+  )
+}
+
+function TrustVerificationSlide() {
+  return (
+    <div className="trust-pillar-example-slide">
+      <h2 className="slide-title wide-title trust-slide-title">
+        <span className="green">Weryfikacja</span>
+      </h2>
+      <p className="body-copy trust-pillar-lede">
+        Widać, skąd pochodzi sugestia AI. Agent obsługi klienta weryfikuje
+        źródła.
+      </p>
+      <article className="trust-visibility-card trust-visibility-card-single">
+        <figure className="trust-visibility-shot is-zendesk">
+          <img
+            src={zendeskWhySuggestion}
+            alt="Zendesk: skąd ta sugestia — źródła i uzasadnienie odpowiedzi AI."
+          />
+        </figure>
+      </article>
+    </div>
+  )
+}
+
 function TrustVerifyPillars() {
   const pillars = [
     {
       title: 'Widoczność',
-      body:
-        'Pokaż, że to AI, co się dzieje (status, źródła, „dlaczego”) i gdzie kończy się pewność systemu.',
+      example: 'Szkic AI · na podstawie 3 źródeł',
     },
     {
       title: 'Kontrola',
-      body:
-        'Stop, edycja, odrzucenie, cofnięcie. Użytkownik może skorygować kurs — bez walki z interfejsem.',
+      example: 'Edytuj szkic · Odrzuć',
     },
     {
       title: 'Zatwierdzenie',
-      body:
-        'Jawne zatwierdzenie przed wysyłką, publikacją lub akcją nieodwracalną. Domyślnie: do Twojej review, nie „już poszło”.',
+      example: 'Zatwierdź i wyślij',
     },
     {
       title: 'Weryfikacja',
-      body:
-        'Zachęta do sprawdzenia, cytaty, checklisty. Evals w zespole i monitoring po wdrożeniu.',
+      example: 'To tylko sugestia. Zweryfikuj.',
     },
   ]
 
@@ -467,7 +569,7 @@ function TrustVerifyPillars() {
         {pillars.map((pillar) => (
           <article key={pillar.title}>
             <h3>{pillar.title}</h3>
-            <p>{pillar.body}</p>
+            <p className="trust-pillar-example">„{pillar.example}”</p>
           </article>
         ))}
       </div>
@@ -493,40 +595,6 @@ function TrustWorkplaceShift() {
         </span>
         <span className="research-meta">Terrible Software · 2026</span>
       </cite>
-    </div>
-  )
-}
-
-function TrustVerifyMicrocopy() {
-  return (
-    <div className="trust-microcopy-slide">
-      <h2 className="slide-title wide-title">
-        To, co piszesz, buduje <span className="green">pętlę sprawdzania</span>
-      </h2>
-      <div className="trust-microcopy-grid">
-        <article className="anthro-avoid">
-          <span className="anthro-label">
-            <EvalFailIcon />
-            Słaba pętla
-          </span>
-          <ul>
-            <li>„Odpowiedź wysłana” — bez Twojego kroku</li>
-            <li>Brak statusu: nie wiesz, czy AI jeszcze „myśli”</li>
-            <li>Pewny ton bez źródeł i bez „sprawdź to”</li>
-          </ul>
-        </article>
-        <article className="anthro-instead">
-          <span className="anthro-label">
-            <EvalPassIcon />
-            Silna pętla
-          </span>
-          <ul>
-            <li>„Zatwierdź i wyślij” · „Odrzuć” · „Edytuj szkic”</li>
-            <li>„Generuję…” · „Może być niedokładne” · źródła / „dlaczego”</li>
-            <li>Jasne, co wymaga Twojej weryfikacji przed akcją</li>
-          </ul>
-        </article>
-      </div>
     </div>
   )
 }
@@ -662,8 +730,10 @@ const slides: Slide[] = [
   {
     content: (
       <h2 className="display statement-display">
-        Za bardzo <span className="green">ufamy</span> sztucznej inteligencji,
-        przez co <span className="green">niszczymy zaufanie</span> do nas.
+        Za bardzo <span className="green">ufamy</span> sztucznej{'\u00A0'}inteligencji,
+        <br />
+        przez{'\u00A0'}co <span className="green">niszczymy zaufanie</span> do{'\u00A0'}
+        nas.
       </h2>
     ),
     className: 'statement-slide',
@@ -671,9 +741,13 @@ const slides: Slide[] = [
   {
     content: (
       <h2 className="display statement-display">
-        Generujemy dokumenty z AI.
+        Generujemy{' '}
+        <span className="statement-keep">dokumenty z{'\u00A0'}AI</span>.
         <br />
-        Dokumenty, które czyta <span className="pink">tylko AI</span>.
+        Dokumenty, które{' '}
+        <span className="statement-keep">
+          <span className="pink">czyta tylko{'\u00A0'}AI</span>.
+        </span>
       </h2>
     ),
     className: 'statement-slide',
@@ -739,8 +813,95 @@ const slides: Slide[] = [
     className: 'statement-slide',
   },
   {
-    content: <TrustVerifyPillars />,
-    className: 'trust-slide-wrap',
+    content: (
+      <h2 className="display statement-display">
+        Wszystko, co generuje AI może być{' '}
+        <span className="pink">halucynacją</span>
+      </h2>
+    ),
+    className: 'statement-slide',
+  },
+  {
+    content: <TrustVisibilitySlide />,
+    className: 'trust-visibility-wrap',
+  },
+  {
+    content: <TrustControlSlide />,
+    className: 'trust-control-wrap',
+  },
+  {
+    content: <TrustApprovalSlide />,
+    className: 'trust-approval-wrap',
+    footerExamples: 'przykład: Zendesk',
+  },
+  {
+    content: <TrustVerificationSlide />,
+    className: 'trust-verification-wrap',
+    footerExamples: 'przykład: Zendesk',
+  },
+  {
+    builds: 1,
+    content: (build) => <BlankBoxAnxiety build={build} />,
+    className: 'era-slide blank-box-slide',
+  },
+  {
+    content: (
+      <div className="cursor-example">
+        <div className="cursor-example-copy">
+          <h2 className="cursor-heading">
+            Widoczność i kontrola w trakcie, nie po fakcie
+          </h2>
+          <p className="body-copy">
+            Status agenta, koszt, możliwość korekcji w trakcie pracy. Widoczny
+            przycisk „stop” — weryfikacja pracy agenta AI w czasie rzeczywistym.
+          </p>
+        </div>
+        <figure className="example-frame cursor-frame">
+          <img
+            src={steerWithoutInterrupting}
+            alt="Cursor agent input showing placeholder microcopy: Steer without interrupting, with Auto Cost and a stop control."
+          />
+        </figure>
+      </div>
+    ),
+    className: 'era-slide',
+  },
+  {
+    content: (
+      <div className="zendesk-example">
+        <div className="zendesk-copy">
+          <h2>
+            Microcopy:{' '}
+            <span className="green">AI w edytorze wiadomości</span>
+          </h2>
+          <p className="body-copy">
+            Pokazujemy, co AI potrafi. Agent-człowiek wie, jak może go użyć. Ma
+            kontrolę nad tym, co zostanie wysłane.
+          </p>
+        </div>
+        <div className="zendesk-frames zendesk-frames-single">
+          <figure className="example-frame zendesk-frame">
+            <img
+              src={zendeskAiPrompts}
+              alt="Zendesk AI writing menu with options: Expand, Simplify, Rewrite in your tone, Make more friendly, Make more formal, plus a custom prompt field."
+            />
+          </figure>
+        </div>
+      </div>
+    ),
+    className: 'era-slide',
+    footerExamples: 'przykład: Zendesk',
+  },
+  {
+    content: (
+      <>
+        <h2 className="display statement-display">
+          <span className="pink">Poza UI:</span> jak wpływamy na{' '}
+          <span className="green">odpowiedzi AI</span>?
+        </h2>
+      </>
+    ),
+    className: 'statement-slide',
   },
   {
     content: <SystemPromptMock showSuggestion={false} />,
@@ -785,120 +946,11 @@ const slides: Slide[] = [
     className: 'statement-slide',
   },
   {
-    builds: 1,
-    content: (build) => <BlankBoxAnxiety build={build} />,
-    className: 'era-slide blank-box-slide',
-  },
-  {
-    content: (
-      <div className="cursor-example">
-        <div className="cursor-example-copy">
-          <h2 className="cursor-heading">
-            Widoczność i kontrola w trakcie, nie po fakcie
-          </h2>
-          <p className="body-copy">
-            Status agenta · koszt · stop · „steer without interrupting” — możesz
-            skorygować AI, zanim zatwierdzisz zmiany w kodzie. To jest pętla
-            weryfikacji w czasie rzeczywistym.
-          </p>
-        </div>
-        <figure className="example-frame cursor-frame">
-          <img
-            src={steerWithoutInterrupting}
-            alt="Cursor agent input showing placeholder microcopy: Steer without interrupting, with Auto Cost and a stop control."
-          />
-        </figure>
-      </div>
-    ),
-    className: 'era-slide',
-  },
-  {
-    content: <TrustVerifyMicrocopy />,
-    className: 'trust-microcopy-wrap',
-  },
-  {
-    content: (
-      <div className="zendesk-example">
-        <div className="zendesk-copy">
-          <h2>
-            Microcopy:{' '}
-            <span className="green">AI w edytorze wiadomości</span>
-          </h2>
-          <p className="body-copy">
-            Pokazujemy, co AI potrafi. Agent-człowiek wie, jak może go użyć. Ma
-            kontrolę nad tym, co zostanie wysłane.
-          </p>
-        </div>
-        <div className="zendesk-frames zendesk-frames-single">
-          <figure className="example-frame zendesk-frame">
-            <img
-              src={zendeskAiPrompts}
-              alt="Zendesk AI writing menu with options: Expand, Simplify, Rewrite in your tone, Make more friendly, Make more formal, plus a custom prompt field."
-            />
-          </figure>
-        </div>
-      </div>
-    ),
-    className: 'era-slide',
-    footerExamples: 'przykład: Zendesk',
-  },
-  {
-    content: (
-      <div className="zendesk-example zendesk-example-shot">
-        <div className="zendesk-copy">
-          <h2>
-            Automatyczny asystent{' '}
-            <span className="pink">nie zastępuje myślenia</span>
-          </h2>
-          <p className="body-copy">
-            AI proponuje odpowiedź. Agent obsługi klienta czyta, poprawia i
-            zatwierdza. Wciąż ma pełną kontrolę.
-          </p>
-        </div>
-        <div className="zendesk-frames zendesk-frames-single">
-          <figure className="example-frame zendesk-frame">
-            <img
-              src={zendeskAutoAssist}
-              alt="Zendesk Auto assist panel drafting a reply about a dark mode feature request, with an Approve button."
-            />
-          </figure>
-        </div>
-      </div>
-    ),
-    className: 'era-slide',
-    footerExamples: 'przykład: Zendesk',
-  },
-  {
-    content: (
-      <div className="zendesk-example zendesk-example-shot">
-        <div className="zendesk-copy">
-          <h2>
-            Automatyczny asystent pokazuje,{' '}
-            <span className="pink">skąd ta sugestia</span>
-          </h2>
-          <p className="body-copy">
-            Agent może sprawdzić źródła i potwierdzić, czy AI działa prawidłowo.
-          </p>
-        </div>
-        <div className="zendesk-frames zendesk-frames-why">
-          <figure className="example-frame zendesk-frame">
-            <img
-              src={zendeskWhySuggestion}
-              alt="Zendesk panel explaining why a suggestion was generated, with sources linking to Feature Requests and Enhancements."
-            />
-          </figure>
-        </div>
-      </div>
-    ),
-    className: 'era-slide',
-    footerExamples: 'przykład: Zendesk',
-  },
-  {
     content: (
       <>
         <h2 className="display statement-display">
           Słowa używane przez <span className="green">AI</span> kształtują ludzki
-          odbiór.
+          odbiór
         </h2>
         <p className="body-copy">
           Porozmawiajmy o ograniczeniach poznawczych
@@ -1191,24 +1243,24 @@ const slides: Slide[] = [
         <h2 className="slide-title wide-title">Zabierz ze sobą</h2>
         <div className="summary-grid">
           <article className="featured-card">
-            <h3>Ufaj, ale sprawdzaj</h3>
+            <h3>Człowiek zawsze w pętli</h3>
             <p>
-              Zaufanie w zespole i w UI: widoczność, kontrola, zatwierdzenie. Twoje
-              imię = rozumiesz i stoisz za tym, co wychodzi.
+              Wszystko może być halucynacją. Widoczność, kontrola, zatwierdzenie,
+              weryfikacja: to podstawa higieny pracy.
             </p>
           </article>
           <article>
-            <h3>Pętla w mikrocopy</h3>
+            <h3>Poza UI: instrukcje i ewaluacja</h3>
             <p>
-              Status, „może być niedokładne”, zatwierdź / edytuj / odrzuć.
-              Evals i monitoring po wdrożeniu.
+              UX writerzy pracują nie tylko nad UI, ale też kształtują odpowiedzi
+              AI. Unikaj nadmiernego uczłowieczania.
             </p>
           </article>
           <article>
-            <h3>Centaur, nie reverse centaur</h3>
+            <h3>Centaur, nie odwrócony centaur</h3>
             <p>
-              AI szkicuje — Ty decydujesz. Zakoduj reguły w skillach; nie
-              wypuszczaj slopu podpisanym nazwiskiem.
+              AI może rozszerzać horyzonty, jeśli korzystamy mądrze. Nie
+              podpisuj się pod slopem.
             </p>
           </article>
         </div>
@@ -1220,9 +1272,9 @@ const slides: Slide[] = [
       <div className="closing-layout">
         <div>
           <h2>
-            Ufaj, ale sprawdzaj —
+            Ufaj, ale sprawdzaj –
             <br />
-            <span className="pink">i dobrej konferencji!</span>
+            <span className="pink">i ciesz się procesem!</span>
           </h2>
         </div>
         <div className="closing-meta">
@@ -1236,7 +1288,7 @@ const slides: Slide[] = [
         </div>
       </div>
     ),
-    className: 'hero-slide',
+    className: 'hero-slide closing-slide',
   },
 ]
 
