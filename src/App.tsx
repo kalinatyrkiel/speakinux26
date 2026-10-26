@@ -8,8 +8,6 @@ import exampleCoffeedeskDiscount from './assets/example-coffeedesk-discount.png'
 import zendeskAiPrompts from './assets/zendesk-ai-prompts.png'
 import zendeskAutoAssist from './assets/zendesk-auto-assist.png'
 import zendeskWhySuggestion from './assets/zendesk-why-suggestion.png'
-import blankBoxAnxiety from './assets/blank-box-anxiety.png'
-import notionAiFull from './assets/notion-ai-full.png'
 import modeScreens from './assets/mode-screens.png'
 import modeDialogue from './assets/mode-dialogue.png'
 import modePrompts from './assets/mode-prompts.png'
@@ -104,33 +102,6 @@ function CyborgIcon() {
 
 function UxSpeakInWordmark() {
   return <span className="slide-chrome-label">speak in UX</span>
-}
-
-function BlankBoxAnxiety({ build }: { build: number }) {
-  return (
-    <div className="blank-box-layout">
-      <div className="blank-box-copy">
-        <h2 className="slide-title wide-title">
-          O co w ogóle mam pytać?
-        </h2>
-        {build >= 1 && (
-          <p className="body-copy">
-            Szybkie prompty odpowiadają: oto, o co możesz zapytać.
-          </p>
-        )}
-      </div>
-      <figure className="blank-box-swap">
-        <img
-          src={build >= 1 ? notionAiFull : blankBoxAnxiety}
-          alt={
-            build >= 1
-              ? 'Notion AI with quick prompts above the Ask Notion AI input.'
-              : 'Empty Ask Notion AI input box.'
-          }
-        />
-      </figure>
-    </div>
-  )
 }
 
 type PromptModeId = 'screens' | 'dialogue' | 'prompts' | 'disclaimers'
@@ -748,11 +719,6 @@ const slides: Slide[] = [
     content: <TrustVerificationSlide />,
     className: 'trust-verification-wrap',
     footerExamples: 'przykład: Zendesk',
-  },
-  {
-    builds: 1,
-    content: (build) => <BlankBoxAnxiety build={build} />,
-    className: 'era-slide blank-box-slide',
   },
   {
     content: (
